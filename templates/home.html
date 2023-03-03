@@ -6,4 +6,18 @@
 
 {% block main %}
 <h1> Keep it agile! </h1>
-{% endblock main%}
+{% for pet in pet_reel %}
+    <div>
+        <!-- <h1>user {{pet.user_name}}</h1> -->
+        <h3>Name: {{pet.name}}</h3>
+        <p>Species: {{pet.type}}</p>
+        <img style="width: 500px" src="{{ pet.image_url }}" alt="{{ pet.name }}">
+        <p>Favourite food is {{pet.favourite_food}}</p>
+        <form method="post" action="/hearts">
+        <input type="hidden" name="pet_id" value="{{ pet.id }}">
+        <button>&#9829;{{pet.hearts}}</button>
+        </form>
+        <p>belongs to :{{pet.user_name}}</p>
+    </div>
+{% endfor %}
+{% endblock main %}

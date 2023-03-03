@@ -8,8 +8,19 @@
     <title>{% block title %}{% endblock title %}</title>
 </head>
 <body>
-    {% block main %}
+    <nav>
+        {% if 'name' not in session %}
+        <a href="/login">Login</a>
+        {% endif %}
+        {% if 'name' in session %}
+        <h2>{{session['name']}}</h2>
+        <a href="/logout">Logout</a>
+        {% endif %}
+            <a href = "/">Home</a>
+    </nav>
+    <p>{{user_name}}</p>
+{% block main %}
 
-    {% endblock main %}    
+{% endblock %}    
 </body>
 </html>
