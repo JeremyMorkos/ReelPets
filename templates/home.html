@@ -13,7 +13,7 @@
         <p>Favourite food is {{pet.favourite_food}}</p>
         <form method="post" action="/hearts">
         <input type="hidden" name="pet_id" value="{{ pet.id }}">
-        <button type = "submit">&#9829;{{pet.hearts}}</button>
+        <button id = "heart_button" type = "submit">&#9829;{{pet.hearts}}</button>
         </form>
         <p>belongs to :{{pet.user_name}}</p>
     </div>

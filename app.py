@@ -8,7 +8,7 @@ from flask import (
 )
 
 from werkzeug.security import generate_password_hash, check_password_hash
-from models.pet import display_pet_reel, heart_counter, insert_pet
+from models.pet import display_pet_reel, heart_counter, insert_pet, display_pet_reel_user
 from models.user import load_user, signup_user
 
 app = Flask(__name__)
@@ -45,7 +45,7 @@ def signup_post():
     password_check = request.form.get('password_check')
 
     if password != password_check:
-        flash('Sorry passwords dont match!', 'error')
+        flash('Passwords dont match', 'error')
         return render_template('signup.html')
     
     else:
@@ -69,7 +69,7 @@ def login_post():
         session['name'] = user_name
         return redirect('/')
     else:
-        flash('Sorry passwords dont match!', 'error')
+        flash('Information is incorrect', 'error')
         return render_template('login.html')
         
 @app.get('/profile')
@@ -79,9 +79,9 @@ def profile_get():
         flash('Sorry only members can add pets!', 'error')
         return redirect('/')
     else:
-        return render_template('profile.html')
-
-## to work on 
+        user_pet = display_pet_reel_user(session['name'])
+        return render_template('profile.html',user_pet=user_pet)
+    
 @app.post('/profile')
 def profile_post():
             
@@ -91,7 +91,6 @@ def profile_post():
             image_url = request.form.get('image_url')
             favourite_food = request.form.get('favourite_food')
             insert_pet(name,type,image_url,favourite_food,user_id)
-            
             return render_template('profile.html')
   
 

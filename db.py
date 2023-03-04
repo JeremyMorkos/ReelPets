@@ -11,6 +11,15 @@ def select_all(query):
     conn.close()
     return results
 
+def select_all_pets(query,params):
+    conn = psycopg2.connect("dbname=project_two")
+    cur = conn.cursor(cursor_factory=RealDictCursor)
+    cur.execute(query,params)
+    results = cur.fetchall()
+    cur.close()
+    conn.close()
+    return results
+
 def select_one(query, params):
     conn = psycopg2.connect("dbname=project_two")
     cur = conn.cursor(cursor_factory=RealDictCursor)

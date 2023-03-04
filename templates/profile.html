@@ -5,9 +5,9 @@ Profile page
 {% endblock title %}
 
 
-{% block main %}
+{% block main %} 
 <h1> Profile page! </h1>
-<form action = "/profile" method = "post">
+<form name = "register" action = "/profile" method = "post">
     <input type="hidden" name="user_id" value="{{ session['name'] }}">
   
     <label for = "name">Name</label>
@@ -22,7 +22,23 @@ Profile page
     <label for = "favourite_food">Favourite food</label>
     <input type = "text" name = "favourite_food" placeholder="Favourite food">
 
-    <button type = "Submit">Submit</button>
+    <button id = "profile_btn" type = "Submit">Submit</button>
 </form>
+{% if user_pet %}
+  <h2>Your pets</h2>
+  <ul>
+  {% for pet in user_pet %}
+    <li>
+        <img style="width: 500px" src="{{ pet.image_url }}" alt="{{ pet.name }}">
+        <h3>{{ pet.name }}</h3>
+        <p>Type: {{ pet.type }}</p>
+        <p>Favorite food: {{ pet.favourite_food }}</p>
+        <p>&#9829;{{ pet.hearts }}</p>
+    </li>
+  {% endfor %}
+  </ul>
+{% else %}
+  <p>You don't have any pets yet!</p>
+{% endif %}
 {% endblock main %}
 
