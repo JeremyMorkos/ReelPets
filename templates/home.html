@@ -5,10 +5,8 @@
 {% endblock title %}
 
 {% block main %}
-<h1>  </h1>
 {% for pet in pet_reel %}
     <div>
-        <!-- <h1>user {{pet.user_name}}</h1> -->
         <h3>Name: {{pet.name}}</h3>
         <p>Species: {{pet.type}}</p>
         <img style="width: 500px" src="{{ pet.image_url }}" alt="{{ pet.name }}">

@@ -6,14 +6,16 @@ from flask import (
     session,
     flash 
 )
+
 from werkzeug.security import generate_password_hash, check_password_hash
-from models.pet import display_pet_reel, heart_counter
+from models.pet import display_pet_reel, heart_counter, insert_pet
 from models.user import load_user, signup_user
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'super secret key'
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
+
 
 
 @app.route('/')
@@ -42,7 +44,6 @@ def signup_post():
     password_hash = generate_password_hash(password)
     password_check = request.form.get('password_check')
 
-
     if password != password_check:
         flash('Sorry passwords dont match!', 'error')
         return render_template('signup.html')
@@ -62,19 +63,43 @@ def login_get():
 def login_post():
     user_name = request.form.get('user_name')
     password = request.form.get('password')
-    
     user = load_user(user_name)
+
     if user and check_password_hash(user['password_hash'], password):
         session['name'] = user_name
         return redirect('/')
     else:
         flash('Sorry passwords dont match!', 'error')
         return render_template('login.html')
+        
+@app.get('/profile')
+def profile_get():
+
+    if 'name' not in session:
+        flash('Sorry only members can add pets!', 'error')
+        return redirect('/')
+    else:
+        return render_template('profile.html')
+
+## to work on 
+@app.post('/profile')
+def profile_post():
+            
+            user_id = session['name'] 
+            name = request.form.get('name')
+            type = request.form.get('type')
+            image_url = request.form.get('image_url')
+            favourite_food = request.form.get('favourite_food')
+            insert_pet(name,type,image_url,favourite_food,user_id)
+            
+            return render_template('profile.html')
+  
 
 @app.route('/logout')
 def logout():
     session.pop('name', None)
     return redirect('/')
+
 
 
 
