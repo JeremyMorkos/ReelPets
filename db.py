@@ -24,3 +24,12 @@ def update(query, params):
     cur.execute(query, params)
     conn.commit()
     conn.close()
+
+def insert(query, params):
+    conn = psycopg2.connect("dbname=project_two")
+    cur = conn.cursor()
+    cur.execute(query, params)
+    conn.commit()
+    conn.close()
+
+    

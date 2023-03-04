@@ -11,6 +11,7 @@
     <nav>
         {% if 'name' not in session %}
         <a href="/login">Login</a>
+        <a href="/signup">Signup</a>
         {% endif %}
         {% if 'name' in session %}
         <h2>{{session['name']}}</h2>
@@ -18,7 +19,15 @@
         {% endif %}
             <a href = "/">Home</a>
     </nav>
-    <p>{{user_name}}</p>
+    <div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %} 
+        <h1 class="{{ category }}">{{ message }}</h1>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+      </div>
 {% block main %}
 
 {% endblock %}    

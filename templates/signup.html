@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+
+{% block title %}
+Signup Page
+{% endblock title %}
+
+{% block main %}
+<h1>Signup Page</h1>
+<form action = "/signup" method = "post">
+
+<label for = "user_name">UserName</label>
+<input type = "text" name = "user_name" placeholder="User Name" >
+
+<label for = "password">Password</label>
+<input type = "password"  name = "password" placeholder="Password">
+
+<label for = "password">Confirm password</label>
+<input type = "password"  name = "password_checkword" placeholder= "Confirm password">
+
+<button type = "submit">Signup</button>
+</form>
+
+{% endblock main%}

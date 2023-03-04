@@ -6,10 +6,15 @@ Login page
 {% endblock title %}
 
 {% block main %}
-<h1> Login! </h1>
+<h1>Login Page</h1>
 <form action = "/login" method = "post">
+
+<label for = "user_name">UserName</label>
 <input type = "text" name = "user_name" placeholder="User Name" >
+
+<label for = "password">Password</label>
 <input type = "password"  name = "password" placeholder="Password">
+
 <button type = "submit">Login</button>
 </form>
 {% endblock main%}

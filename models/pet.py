@@ -5,9 +5,8 @@ def display_pet_reel():
     return pet_reel
 
 def heart_counter(pet_id):
-  
     db.update(
-        "UPDATE pets SET hearts = hearts + 1 WHERE id = %s;",
+        "UPDATE pets SET hearts = hearts + 1 WHERE id = %s",
         (pet_id,)
     )
 
