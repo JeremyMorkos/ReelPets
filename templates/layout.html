@@ -10,11 +10,12 @@
 <body>
     <nav>
         {% if 'name' not in session %}
+        <h4>Welcome Guest</h4>
         <a href="/login">Login</a>
         <a href="/signup">Signup</a>
         {% endif %}
         {% if 'name' in session %}
-        <h2>{{session['name']}}</h2>
+        <h4>Welcome: {{session['name']}}</h4>
         <a href="/logout">Logout</a>
         {% endif %}
             <a href = "/">Home</a>

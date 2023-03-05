@@ -8,8 +8,11 @@ from flask import (
 )
 
 from werkzeug.security import generate_password_hash, check_password_hash
-from models.pet import display_pet_reel, heart_counter, insert_pet, display_pet_reel_user
+from models.pet import display_pet_reel, insert_pet, display_pet_reel_user
 from models.user import load_user, signup_user
+from models.heart import heart_counter
+
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'super secret key'
@@ -17,21 +20,11 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 
 
-
 @app.route('/')
 def index():
     pet_reel = display_pet_reel()
     return render_template('home.html', pet_reel=pet_reel)
 
-@app.post('/hearts')
-def heart_pet_post():
-    if 'name' in session:
-        pet_id = request.form.get('pet_id')
-        heart_counter(pet_id)
-        return redirect('/')
-    else:
-        flash('Sorry only memebers can love pets!', 'error')
-        return redirect('login')
     
 @app.get('/signup')
 def signup_get():
@@ -67,10 +60,18 @@ def login_post():
 
     if user and check_password_hash(user['password_hash'], password):
         session['name'] = user_name
+        session['id'] = user['id']
         return redirect('/')
     else:
         flash('Information is incorrect', 'error')
         return render_template('login.html')
+    
+@app.post('/hearts')
+def heart_pet_post():
+        user_id = session['id']
+        pet_id = request.args.get('pet_id')
+        heart_counter(user_id, pet_id)
+        return redirect('/')
         
 @app.get('/profile')
 def profile_get():
@@ -91,7 +92,7 @@ def profile_post():
             image_url = request.form.get('image_url')
             favourite_food = request.form.get('favourite_food')
             insert_pet(name,type,image_url,favourite_food,user_id)
-            return render_template('profile.html')
+            return redirect('/profile')
   
 
 @app.route('/logout')

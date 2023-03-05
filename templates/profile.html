@@ -26,17 +26,18 @@ Profile page
 </form>
 {% if user_pet %}
   <h2>Your pets</h2>
-  <ul>
+  <div>
   {% for pet in user_pet %}
-    <li>
-        <img style="width: 500px" src="{{ pet.image_url }}" alt="{{ pet.name }}">
-        <h3>{{ pet.name }}</h3>
-        <p>Type: {{ pet.type }}</p>
-        <p>Favorite food: {{ pet.favourite_food }}</p>
-        <p>&#9829;{{ pet.hearts }}</p>
-    </li>
+   
+        <img class="pet-image" width = "500"  src="{{ pet.image_url }}" alt="{{ pet.name }}">
+        <div class="pet-details"></div>
+        <h3 class="pet-name"></h3>{{ pet.name }}</h3>
+        <p class="pet-species">{{ pet.type }}</p>
+        <p class="pet-food">{{ pet.favourite_food }}</p>
+        <p id = "heart_button">❤️{{ pet.hearts }}</p>
+   
   {% endfor %}
-  </ul>
+  </div>
 {% else %}
   <p>You don't have any pets yet!</p>
 {% endif %}

@@ -13,11 +13,26 @@ CREATE TABLE pets (
   type VARCHAR(254),
   image_url TEXT NOT NULL,
   favourite_food VARCHAR(254),
-  hearts INT NOT NULL, 
+  -- INT NOT NULL, 
   user_id INT,
   CONSTRAINT fk_pets_users
     FOREIGN KEY(user_id)
     REFERENCES users(id)
+);
+
+CREATE TABLE user_hearts(
+  id SERIAL PRIMARY KEY,
+  -- num_hearts INT DEFAULT 0,
+
+  user_id INT,
+    CONSTRAINT fk_user_hearts_users
+    FOREIGN KEY(user_id)
+    REFERENCES users(id),
+
+  pet_id INT,
+    CONSTRAINT fk_user_hearts_pets
+    FOREIGN KEY(pet_id)
+    REFERENCES pets(id)
 );
 
 TRUNCATE TABLE users CASCADE;
@@ -33,30 +48,30 @@ INSERT INTO users (user_name, password_hash) VALUES ('Frog delight', 'pbkdf2:sha
 -- #password = goodbye
 INSERT INTO users (user_name, password_hash) VALUES ('CreepyCrawler', 'pbkdf2:sha256:260000$zKwnRQp4lJJebKVe$aa6a673c0e529710557b0f9ae5eac4cd07532c3bd3b01a3a39b39b35fa19056b');
 
-INSERT INTO pets (name, type, image_url, favourite_food, hearts, user_id) VALUES ('Slitherer', 'Coral snake', 'https://a-z-animals.com/media/2022/04/Texas-Coral-Snake1.jpg', 'Apples', 20, 1);
-INSERT INTO pets (name, type, image_url, favourite_food, hearts, user_id) VALUES ('Scaley', 'Cobra', 'https://a-z-animals.com/media/2022/05/monocled-cobra-snake-on-white-picture-id1278579199.jpg', 'Mice', 10, 1);
-INSERT INTO pets (name, type, image_url, favourite_food, hearts, user_id) VALUES ('Slimeball', 'Leaf-Nosed snake', 'https://a-z-animals.com/media/2021/12/paradise-flying-snake.jpg', 'Slugs', 15, 1);
-INSERT INTO pets (name, type, image_url, favourite_food, hearts, user_id) VALUES ('Fred', 'Ring-Necked snake', 'https://a-z-animals.com/media/2022/02/shutterstock_687723445.jpg', 'Beans', 100, 1);
-INSERT INTO pets (name, type, image_url, favourite_food, hearts, user_id) VALUES ('Sally', 'Anaconda', 'https://a-z-animals.com/media/2022/02/shutterstock_1965532993.jpg', 'Plums', 200, 1);
-INSERT INTO pets (name, type, image_url, favourite_food, hearts, user_id) VALUES ('Snape', 'Australian copperhead snake', 'https://a-z-animals.com/media/2021/11/What-Does-a-Copperhead-Snake-Look-Like-header.jpg', 'Pumpkin Pie', 50, 1);
-INSERT INTO pets (name, type, image_url, favourite_food, hearts, user_id) VALUES ('Voldybaldy', 'Hognose snake', 'https://a-z-animals.com/media/2022/04/Hognose-Snake-header.jpg', 'Ice Cream', 3, 1);
+INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Slitherer', 'Coral snake', 'https://a-z-animals.com/media/2022/04/Texas-Coral-Snake1.jpg', 'Apples',  1);
+INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Scaley', 'Cobra', 'https://a-z-animals.com/media/2022/05/monocled-cobra-snake-on-white-picture-id1278579199.jpg', 'Mice', 1);
+INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Slimeball', 'Leaf-Nosed snake', 'https://a-z-animals.com/media/2021/12/paradise-flying-snake.jpg', 'Slugs', 1);
+INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Fred', 'Ring-Necked snake', 'https://a-z-animals.com/media/2022/02/shutterstock_687723445.jpg', 'Beans', 1);
+INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Sally', 'Anaconda', 'https://a-z-animals.com/media/2022/02/shutterstock_1965532993.jpg', 'Plums', 1);
+INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Snape', 'Australian copperhead snake', 'https://a-z-animals.com/media/2021/11/What-Does-a-Copperhead-Snake-Look-Like-header.jpg', 'Pumpkin Pie', 1);
+INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Voldybaldy', 'Hognose snake', 'https://a-z-animals.com/media/2022/04/Hognose-Snake-header.jpg', 'Ice Cream', 1);
 
-INSERT INTO pets (name, type, image_url, favourite_food, hearts, user_id) VALUES ('Leafy', 'Tree frog', 'https://a-z-animals.com/media/2019/11/Tree-frog-Red-eyed-1024x535.jpg' , 'Crickets', 300, 2);
-INSERT INTO pets (name, type, image_url, favourite_food, hearts, user_id) VALUES ('Bully', 'American bullfrog', 'https://a-z-animals.com/media/2019/11/Bullfrog-on-leaf-1024x535.jpg' , 'Mealworms', 400, 2);
-INSERT INTO pets (name, type, image_url, favourite_food, hearts, user_id) VALUES ('Speedy', 'Northern leopard frog', 'https://a-z-animals.com/media/2021/02/Leopard-Frog-on-rock-1024x535.jpg', 'Locusts', 500, 2);
-INSERT INTO pets (name, type, image_url, favourite_food, hearts, user_id) VALUES ('Grumpy Guts', 'Poison dart frog', 'https://a-z-animals.com/media/2021/07/Incredible-Rainforest-Animals_-Poison-Dart-Frogs.jpg', 'Grasshoppers', 600, 2);
-INSERT INTO pets (name, type, image_url, favourite_food, hearts, user_id) VALUES ('Shiny', 'Golden poison frog', 'https://a-z-animals.com/media/2018/09/Poison-Dart-Frog-yellow.jpg', 'Caterpillars', 800, 2);
-INSERT INTO pets (name, type, image_url, favourite_food, hearts, user_id) VALUES ('Bill', 'Red-crowned toadlet', 'https://media.australian.museum/media/dd/images/Some_image.width-1200.75a457c.jpg', 'Blackworms', 900, 2);
-INSERT INTO pets (name, type, image_url, favourite_food, hearts, user_id) VALUES ('Zach', 'Pacman frog', 'https://a-z-animals.com/media/2022/02/shutterstock_410912479.jpg', 'Mice', 2000, 2);
+INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Leafy', 'Tree frog', 'https://a-z-animals.com/media/2019/11/Tree-frog-Red-eyed-1024x535.jpg' , 'Crickets', 2);
+INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Bully', 'American bullfrog', 'https://a-z-animals.com/media/2019/11/Bullfrog-on-leaf-1024x535.jpg' , 'Mealworms', 2);
+INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Speedy', 'Northern leopard frog', 'https://a-z-animals.com/media/2021/02/Leopard-Frog-on-rock-1024x535.jpg', 'Locusts', 2);
+INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Grumpy Guts', 'Poison dart frog', 'https://a-z-animals.com/media/2021/07/Incredible-Rainforest-Animals_-Poison-Dart-Frogs.jpg', 'Grasshoppers', 2);
+INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Shiny', 'Golden poison frog', 'https://a-z-animals.com/media/2018/09/Poison-Dart-Frog-yellow.jpg', 'Caterpillars', 2);
+INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Bill', 'Red-crowned toadlet', 'https://media.australian.museum/media/dd/images/Some_image.width-1200.75a457c.jpg', 'Blackworms', 2);
+INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Zach', 'Pacman frog', 'https://a-z-animals.com/media/2022/02/shutterstock_410912479.jpg', 'Mice', 2);
 
 
-INSERT INTO pets (name, type, image_url, favourite_food, hearts, user_id) VALUES ('Red', 'Redback spider', 'https://a-z-animals.com/media/2021/09/Redback-SPider-header.jpg', 'Crickets', 1000, 3);
-INSERT INTO pets (name, type, image_url, favourite_food, hearts, user_id) VALUES ('Argghhh', 'Forked pirate spider', 'https://spiderbytes.org/wp-content/uploads/2015/10/Mimetidae_Florida.jpg', 'Mice', 1003, 3);
-INSERT INTO pets (name, type, image_url, favourite_food, hearts, user_id) VALUES ('Mr Shy', 'Brown recluse spider', 'https://a-z-animals.com/media/2021/12/Most-Dangerous-Spiders-Brown-Recluse-Spider.jpg', 'Slugs', 1200, 3);
-INSERT INTO pets (name, type, image_url, favourite_food, hearts, user_id) VALUES ('Mr Big', 'Goliath birdeater', 'https://a-z-animals.com/media/2021/10/goliath-tarantula-1.jpg', 'Beans', 1001, 3);
-INSERT INTO pets (name, type, image_url, favourite_food, hearts, user_id) VALUES ('Wolfy', 'Rabid wolf spider', 'https://a-z-animals.com/media/2022/03/shutterstock_578630674.jpg', 'Plums', 2002, 3);
-INSERT INTO pets (name, type, image_url, favourite_food, hearts, user_id) VALUES ('Moody', 'Coastal peacock spider', 'https://a-z-animals.com/media/2021/10/Peacock-spider-header.jpg', 'Pumpkin Pie', 5000, 3);
-INSERT INTO pets (name, type, image_url, favourite_food, hearts, user_id) VALUES ('Fuzz Ball', 'Giant huntsman spider', 'https://a-z-animals.com/media/2021/07/Huntsman-Spider-in-the-Rainforest-1024x535.jpg', 'Ice Cream', 3230, 3);
+INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Red', 'Redback spider', 'https://a-z-animals.com/media/2021/09/Redback-SPider-header.jpg', 'Crickets', 3);
+INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Argghhh', 'Forked pirate spider', 'https://spiderbytes.org/wp-content/uploads/2015/10/Mimetidae_Florida.jpg', 'Mice', 3);
+INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Mr Shy', 'Brown recluse spider', 'https://a-z-animals.com/media/2021/12/Most-Dangerous-Spiders-Brown-Recluse-Spider.jpg', 'Slugs', 3);
+INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Mr Big', 'Goliath birdeater', 'https://a-z-animals.com/media/2021/10/goliath-tarantula-1.jpg', 'Beans', 3);
+INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Wolfy', 'Rabid wolf spider', 'https://a-z-animals.com/media/2022/03/shutterstock_578630674.jpg', 'Plums', 3);
+INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Moody', 'Coastal peacock spider', 'https://a-z-animals.com/media/2021/10/Peacock-spider-header.jpg', 'Pumpkin Pie', 3);
+INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Fuzz Ball', 'Giant huntsman spider', 'https://a-z-animals.com/media/2021/07/Huntsman-Spider-in-the-Rainforest-1024x535.jpg', 'Ice Cream', 3);
 
 
 
