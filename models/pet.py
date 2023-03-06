@@ -15,6 +15,15 @@ def display_pet_reel_user(user_name):
     pet_reel_user = db.select_all_pets ("SELECT pets.*  FROM pets JOIN users ON users.id = pets.user_id Where user_name = %s;", [user_name])
     return pet_reel_user
     
- 
+def delete_pet(pet_id):
+    db.delete(
+        "DELETE FROM pets WHERE id = %s;",
+        [pet_id]
+    )
 
+def select_one_pet(pet_id):
+    db.select_one(
+        "SELECT * FROM pets WHERE id = %s",
+        [pet_id]
+    )
 

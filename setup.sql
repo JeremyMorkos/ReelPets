@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS pets CASCADE;
+DROP TABLE IF EXISTS user_hearts CASCADE;
 
 CREATE TABLE users (
 id SERIAL PRIMARY KEY,
@@ -13,7 +14,7 @@ CREATE TABLE pets (
   type VARCHAR(254),
   image_url TEXT NOT NULL,
   favourite_food VARCHAR(254),
-  -- INT NOT NULL, 
+  num_hearts INT DEFAULT 0,
   user_id INT,
   CONSTRAINT fk_pets_users
     FOREIGN KEY(user_id)
@@ -22,7 +23,6 @@ CREATE TABLE pets (
 
 CREATE TABLE user_hearts(
   id SERIAL PRIMARY KEY,
-  -- num_hearts INT DEFAULT 0,
 
   user_id INT,
     CONSTRAINT fk_user_hearts_users
@@ -33,13 +33,14 @@ CREATE TABLE user_hearts(
     CONSTRAINT fk_user_hearts_pets
     FOREIGN KEY(pet_id)
     REFERENCES pets(id)
-);
+);  
 
 TRUNCATE TABLE users CASCADE;
 TRUNCATE TABLE pets CASCADE;
 
 ALTER SEQUENCE users_id_seq RESTART WITH 1;
 ALTER SEQUENCE pets_id_seq RESTART WITH 1;
+ALTER SEQUENCE user_hearts_id_seq RESTART WITH 1;
 
 -- #password = hello
 INSERT INTO users (user_name, password_hash) VALUES ('SeemySnakes', 'pbkdf2:sha256:260000$7JGWCmRiZ4ddVXr3$cd8e5412f9ebcff6b600fc95a38590f246046c72aaf9a1e4c4b9b64730e027c9');
@@ -48,7 +49,7 @@ INSERT INTO users (user_name, password_hash) VALUES ('Frog delight', 'pbkdf2:sha
 -- #password = goodbye
 INSERT INTO users (user_name, password_hash) VALUES ('CreepyCrawler', 'pbkdf2:sha256:260000$zKwnRQp4lJJebKVe$aa6a673c0e529710557b0f9ae5eac4cd07532c3bd3b01a3a39b39b35fa19056b');
 
-INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Slitherer', 'Coral snake', 'https://a-z-animals.com/media/2022/04/Texas-Coral-Snake1.jpg', 'Apples',  1);
+INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Slitherer', 'Coral snake', 'https://a-z-animals.com/media/2022/04/Texas-Coral-Snake1.jpg', 'Apples', 1);
 INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Scaley', 'Cobra', 'https://a-z-animals.com/media/2022/05/monocled-cobra-snake-on-white-picture-id1278579199.jpg', 'Mice', 1);
 INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Slimeball', 'Leaf-Nosed snake', 'https://a-z-animals.com/media/2021/12/paradise-flying-snake.jpg', 'Slugs', 1);
 INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Fred', 'Ring-Necked snake', 'https://a-z-animals.com/media/2022/02/shutterstock_687723445.jpg', 'Beans', 1);
@@ -68,7 +69,7 @@ INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Zach
 INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Red', 'Redback spider', 'https://a-z-animals.com/media/2021/09/Redback-SPider-header.jpg', 'Crickets', 3);
 INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Argghhh', 'Forked pirate spider', 'https://spiderbytes.org/wp-content/uploads/2015/10/Mimetidae_Florida.jpg', 'Mice', 3);
 INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Mr Shy', 'Brown recluse spider', 'https://a-z-animals.com/media/2021/12/Most-Dangerous-Spiders-Brown-Recluse-Spider.jpg', 'Slugs', 3);
-INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Mr Big', 'Goliath birdeater', 'https://a-z-animals.com/media/2021/10/goliath-tarantula-1.jpg', 'Beans', 3);
+INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Mr Big', 'Goliath birdeater', 'https://a-z-animals.com/media/2021/10/goliath-tarantula-1.jpg',  'Beans', 3);
 INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Wolfy', 'Rabid wolf spider', 'https://a-z-animals.com/media/2022/03/shutterstock_578630674.jpg', 'Plums', 3);
 INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Moody', 'Coastal peacock spider', 'https://a-z-animals.com/media/2021/10/Peacock-spider-header.jpg', 'Pumpkin Pie', 3);
 INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Fuzz Ball', 'Giant huntsman spider', 'https://a-z-animals.com/media/2021/07/Huntsman-Spider-in-the-Rainforest-1024x535.jpg', 'Ice Cream', 3);

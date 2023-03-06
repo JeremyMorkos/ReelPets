@@ -7,15 +7,16 @@
 {% block main %}
 {% for pet in pet_reel %}
     <div class = "container">
-        <img width= "500" class="pet-image"  src="{{ pet.image_url }}" alt="{{ pet.name }}">
+        <a href = "/"><img width= "500" class="pet-image" src="{{ pet.image_url }}" alt="{{ pet.name }}"></a>
         <div class="pet-details">
             <h3 class="pet-name">{{pet.name}}</h3>
             <p class="pet-species">{{pet.type}}</p>
             <p class="pet-food">{{pet.favourite_food}}</p>
-
+           
             {% if 'name' in session %}
-            <button data-pet-id= "{{ pet.id }}" class = "heart_button">❤️</button>
-            {% endif %}
+            <button data-pet-id= "{{ pet.id }}" class = "heart_button">❤️ </button>
+            <span> {{pet.num_hearts}}</span>
+           {%endif%}
 
             <p class="pet-owner">belongs to :{{pet.user_name}}</p>
         </div>

@@ -9,6 +9,8 @@ def heart_counter(user_id,pet_id):
             "DELETE FROM user_hearts WHERE user_id = %s AND pet_id = %s",
             [user_id, pet_id]  
         ) 
+            
+
         else :
             db.insert(
                 "INSERT INTO user_hearts (user_id, pet_id ) VALUES (%s,%s)",

@@ -8,7 +8,7 @@ from flask import (
 )
 
 from werkzeug.security import generate_password_hash, check_password_hash
-from models.pet import display_pet_reel, insert_pet, display_pet_reel_user
+from models.pet import display_pet_reel, insert_pet, display_pet_reel_user,delete_pet, select_one_pet
 from models.user import load_user, signup_user
 from models.heart import heart_counter
 
@@ -68,6 +68,7 @@ def login_post():
     
 @app.post('/hearts')
 def heart_pet_post():
+
         user_id = session['id']
         pet_id = request.args.get('pet_id')
         heart_counter(user_id, pet_id)
@@ -100,7 +101,21 @@ def logout():
     session.pop('name', None)
     return redirect('/')
 
+@app.get('/delete')
+def delete_user_pet_get():
+    pet_id = request.args.get('id')
+    pet = select_one_pet(pet_id)
+    return render_template('delete.html', pet_id=pet_id, pet=pet)
 
+
+@app.post('/delete')
+def delete_user_pet_post():
+    pet_id = request.form.get('id')
+    select_one_pet(pet_id)
+    delete_pet(pet_id)
+    return redirect('/profile')
+
+ 
 
 
 if __name__ == "__main__":
