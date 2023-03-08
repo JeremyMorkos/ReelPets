@@ -2,7 +2,7 @@
 const validateProfile = (event) => {
     const name = document.forms["register"]["name"].value;
     const type = document.forms["register"]["type"].value;
-    const imageUrl = document.forms["register"]["image_url"].value;
+    const imageUrl = document.forms["register"]["image"].value;
     const favouriteFood = document.forms["register"]["favourite_food"].value;
     if (name === "" || type === "" || imageUrl === "" || favouriteFood === "")  {
         alert("All fields must be filled out");
@@ -19,10 +19,12 @@ if (profileBtn)
 
 const validateSignup = (event) => {
     const user_name = document.forms["signup"]["user_name"].value;
+    const imageUrl = document.forms["signup"]["image"].value;
     const password = document.forms["signup"]["password"].value;
     const password_check = document.forms["signup"]["password_check"].value;
  
-    if (user_name === "" || password === "" || password_check === "")  {
+ 
+    if (user_name === "" || imageUrl ==="" || password === "" || password_check === "")  {
         alert("All fields must be filled out");
         event.preventDefault(); 
         return false;

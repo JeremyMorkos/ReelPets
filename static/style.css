@@ -48,6 +48,12 @@
   nav a:last-child {
     margin-right: 0;
   }
+
+  .profile-image{
+    width: 35px;
+    border-radius: 20px;
+    
+  }
   
    .container {
     display: flex;

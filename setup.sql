@@ -5,7 +5,8 @@ DROP TABLE IF EXISTS user_hearts CASCADE;
 CREATE TABLE users (
 id SERIAL PRIMARY KEY,
 user_name VARCHAR (254) NOT NULL,
-password_hash TEXT NOT NULL
+password_hash TEXT NOT NULL,
+image_url TEXT
 );
 
 CREATE TABLE pets (
@@ -42,11 +43,14 @@ ALTER SEQUENCE pets_id_seq RESTART WITH 1;
 ALTER SEQUENCE user_hearts_id_seq RESTART WITH 1;
 
 -- #password = hello
-INSERT INTO users (user_name, password_hash) VALUES ('SeemySnakes', 'pbkdf2:sha256:260000$7JGWCmRiZ4ddVXr3$cd8e5412f9ebcff6b600fc95a38590f246046c72aaf9a1e4c4b9b64730e027c9');
+INSERT INTO users (user_name, password_hash, image_url) VALUES ('SeemySnakes', 'pbkdf2:sha256:260000$7JGWCmRiZ4ddVXr3$cd8e5412f9ebcff6b600fc95a38590f246046c72aaf9a1e4c4b9b64730e027c9','cloudinary://167789155165896:WhKSTGMc0tLFWw9CsnXbfQ-IrQ0@dwjdcepnm
+');
 -- #password = welcome
-INSERT INTO users (user_name, password_hash) VALUES ('Frog delight', 'pbkdf2:sha256:260000$kK1OxClFjeKJv5XC$a84f692d5c1bf89879d8ee07cf55b564867ceb1b14dca16d8bad533c420eb76e');
+INSERT INTO users (user_name, password_hash, image_url) VALUES ('Frog delight', 'pbkdf2:sha256:260000$kK1OxClFjeKJv5XC$a84f692d5c1bf89879d8ee07cf55b564867ceb1b14dca16d8bad533c420eb76e','cloudinary://167789155165896:WhKSTGMc0tLFWw9CsnXbfQ-IrQ0@dwjdcepnm
+');
 -- #password = goodbye
-INSERT INTO users (user_name, password_hash) VALUES ('CreepyCrawler', 'pbkdf2:sha256:260000$zKwnRQp4lJJebKVe$aa6a673c0e529710557b0f9ae5eac4cd07532c3bd3b01a3a39b39b35fa19056b');
+INSERT INTO users (user_name, password_hash, image_url) VALUES ('CreepyCrawler', 'pbkdf2:sha256:260000$zKwnRQp4lJJebKVe$aa6a673c0e529710557b0f9ae5eac4cd07532c3bd3b01a3a39b39b35fa19056b','cloudinary://167789155165896:WhKSTGMc0tLFWw9CsnXbfQ-IrQ0@dwjdcepnm
+');
 
 INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Slitherer', 'Coral snake', 'https://a-z-animals.com/media/2022/04/Texas-Coral-Snake1.jpg', 'Apples', 1);
 INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Scaley', 'Cobra', 'https://a-z-animals.com/media/2022/05/monocled-cobra-snake-on-white-picture-id1278579199.jpg', 'Mice', 1);

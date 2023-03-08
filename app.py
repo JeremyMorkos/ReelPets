@@ -6,11 +6,13 @@ from flask import (
     session,
     flash 
 )
-
+from cloudinary import CloudinaryImage
+import cloudinary.uploader
 from werkzeug.security import generate_password_hash, check_password_hash
 from models.pet import display_pet_reel, insert_pet, display_pet_reel_user,delete_pet, select_one_pet
-from models.user import load_user, signup_user
+from models.user import load_user, signup_user,update_profile
 from models.heart import heart_counter
+
 
 
 
@@ -23,8 +25,15 @@ app.config["SESSION_TYPE"] = "filesystem"
 
 @app.route('/')
 def index():
+    print(session)
+    if 'name' in session:
+        user_name = session['name']
+        user = load_user(user_name)
+        image_url = user['image_url']
+    else:
+        image_url = None
     pet_reel = display_pet_reel()
-    return render_template('home.html', pet_reel=pet_reel)
+    return render_template('home.html', pet_reel=pet_reel,image_url=image_url)
 
     
 @app.get('/signup')
@@ -35,6 +44,10 @@ def signup_get():
 def signup_post():
     user_name = request.form.get('user_name')
     password = request.form.get('password')
+    image = request.files.get('image')    
+    upload_image = cloudinary.uploader.upload(image)
+    image_url = upload_image['url']
+    
     password_hash = generate_password_hash(password)
     password_check = request.form.get('password_check')
 
@@ -43,7 +56,7 @@ def signup_post():
         return render_template('signup.html')
     
     else:
-        signup_user(user_name,password_hash)
+        signup_user(user_name,password_hash, image_url)
         return redirect('/login')
 
 @app.get('/login')
@@ -62,6 +75,7 @@ def login_post():
     if user and check_password_hash(user['password_hash'], password):
         session['name'] = user_name
         session['id'] = user['id']
+        print(user['id'])
         return redirect('/')
     else:
         flash('Login information is incorrect, try again!', 'error')
@@ -84,9 +98,11 @@ def profile_get():
         flash('Sorry only members can create a profile!', 'error')
         return redirect('/')
     else:
-        
+        user_name = session['name']
+        user = load_user(user_name)
+        image_url = user['image_url']
         user_pet = display_pet_reel_user(session['name'])
-        return render_template('profile.html',user_pet=user_pet)
+        return render_template('profile.html',user_pet=user_pet, image_url=image_url)
     
 @app.post('/profile') 
 def profile_post():
@@ -94,23 +110,58 @@ def profile_post():
             user_id = session['name'] 
             name = request.form.get('name')
             type = request.form.get('type')
-            image_url = request.form.get('image_url')
+            image = request.files.get('image')
             favourite_food = request.form.get('favourite_food')
+            upload_image = cloudinary.uploader.upload(image)
+            image_url = upload_image['url']
+
             insert_pet(name,type,image_url,favourite_food,user_id)
+
+
             return redirect('/profile')
   
-@app.get('/about/<user_name>')
-def view_user_profile(user_name):
-    if user_name == session['name']:
-         return redirect('/profile')
-     
-    elif 'name' in session:
-        user_pet = display_pet_reel_user(user_name)
-        return render_template('about.html', user_pet=user_pet,user_name=user_name)
-   
+@app.get('/edit_profile')
+def edit_profile_get():
+     return render_template('edit_profile.html')
+
+@app.post('/edit_profile')
+def edit_profile_post():
+    user_id = session['id']
+    user_name = request.form.get('user_name')
+    password = request.form.get('password')
+    image = request.files.get('image')    
+    upload_image = cloudinary.uploader.upload(image)
+    image_url = upload_image['url']
+    
+    password_hash = generate_password_hash(password)
+    password_check = request.form.get('password_check')
+
+    if password != password_check:
+        flash('Passwords dont match', 'error')
+        return render_template('edit_profile.html')
+    
     else:
+        update_profile(user_id,user_name,password_hash, image_url)
+        session['name'] = user_name
+        return redirect('/profile')
+ 
+@app.get('/about/<user_id>')
+def view_user_profile(user_id):
+    
+    if 'name' not in session:
         flash('Sorry only members can see profiles', 'error')
         return redirect('/')
+
+    elif user_id == session['name']:
+         return redirect('/profile')
+     
+    elif  'name' in session:
+        user_name = session['name']
+        user = load_user(user_name)
+        image_url = user['image_url']
+        user_pet = display_pet_reel_user(user_id)
+        return render_template('about.html', user_pet=user_pet,user_id=user_id,image_url=image_url)
+
 
 @app.get('/logout')
 def logout():

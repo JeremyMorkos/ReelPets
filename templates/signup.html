@@ -7,10 +7,13 @@ Signup Page
 
 {% block main %}
 <h1>Signup Page</h1>
-<form name = "signup" action = "/signup" method = "post">
+<form name = "signup" action = "/signup" method = "post" enctype="multipart/form-data">
 
 <label for = "user_name">UserName</label>
 <input type = "text" name = "user_name" placeholder="User Name" >
+
+<label for = "image"> ProfilePicture</label>
+<input type = "file" name = "image" />
 
 <label for = "password">Password</label>
 <input type = "password"  name = "password" placeholder="Password">

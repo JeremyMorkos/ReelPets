@@ -7,7 +7,7 @@ Profile page
 
 {% block main %} 
 <h1> Profile page! </h1>
-<form name = "register" action = "/profile" method = "post">
+<form name = "register" action = "/profile" method = "post" enctype="multipart/form-data">
     <input type="hidden" name="user_id" value="{{ session['name'] }}">
   
     <label for = "name">Name</label>
@@ -16,8 +16,7 @@ Profile page
     <label for = "type">Type</label>
     <input type ="text" name = "type" placeholder="Type of pet">
 
-    <label for = "image_url">Image url</label>
-    <input type = "text" name = "image_url" placeholder="Image url">
+    <input type = "file" name = "image" />
 
     <label for = "favourite_food">Favourite food</label>
     <input type = "text" name = "favourite_food" placeholder="Favourite food">

@@ -6,7 +6,7 @@ about page
 
 
 {% block main %}
-<h3>You are viewing {{user_name}}</h3>
+<h3>You are viewing {{user_id}}</h3>
 {% for pet in user_pet %}
 
 <img class="pet-image" width = "500"  src="{{ pet.image_url }}" alt="{{ pet.name }}">

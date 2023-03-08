@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Edit user details page
+{% endblock title %}
+
+{% block main %}
+<h1>Edit page</h1>
+<form name = "edit_profile" action = "/edit_profile" method = "post" enctype="multipart/form-data">
+    <input type="hidden" name="user_id" value="{{ session['id'] }}">
+
+    <label for = "user_name">UserName</label>
+    <input type = "text" name = "user_name" placeholder="User Name" >
+    
+    <label for = "image"> ProfilePicture</label>
+    <input type = "file" name = "image" />
+    
+    <label for = "password">Password</label>
+    <input type = "password"  name = "password" placeholder="Password">
+    
+    <label for = "password_check">Confirm password</label>
+    <input type = "password"  name = "password_check" placeholder= "Confirm password">
+    
+    <button id = "signup" type = "submit">Edit</button>
+    </form>
+
+
+{% endblock main %}
