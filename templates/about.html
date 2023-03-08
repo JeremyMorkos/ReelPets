@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+about page
+{% endblock title %}
+
+
+{% block main %}
+<h3>You are viewing {{user_name}}</h3>
+{% for pet in user_pet %}
+
+<img class="pet-image" width = "500"  src="{{ pet.image_url }}" alt="{{ pet.name }}">
+<div class="pet-details"></div>
+<form method="GET" action="/about">
+  <input type="hidden" name="id" value="{{ pet.id }}">
+</form>
+
+<h3 class="pet-name"></h3>{{ pet.name }}</h3>
+<p class="pet-species">{{ pet.type }}</p>
+<p class="pet-food"> Loves {{ pet.favourite_food }}</p>
+<p id = "heart_button">❤️{{ pet.hearts }} {{pet.num_hearts}}</p>
+{% endfor %}
+{% endblock main %}
+

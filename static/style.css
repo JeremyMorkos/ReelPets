@@ -1,113 +1,118 @@
-/* 
+
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Fredoka+One&family=Nunito+Sans:wght@700&family=Open+Sans:wght@300&display=swap');
-   /* Styles for desktop screens */
+
    body{
     margin:auto;
     align-items: center;
     text-align: center;
    }
-/* .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-} */
 
-/* .pet {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 90%;
-  margin: 1rem;
-  padding: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 1rem;
-  scroll-snap-align: center;
-}
-
-.pet-image {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 1rem;
-  margin-bottom: 1rem;
-}
-
-.pet-details {
-  width: 100%;
-}
-
-.pet-name {
-  margin: 0;
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-align: center;
-}
-
-.pet-species {
-  margin: 0;
-  font-size: 1rem;
-  text-align: center;
-} */
-/* 
-.pet-food {
-  margin: 0.5rem 0;
-  font-size: 1rem;
-  text-align: center;
-}
-
-#heart_button {
-  background-color: transparent;
-  border: none;
-  font-size: 20px;
-  color: #ed4956;
-  cursor: pointer;
-}
-
-#heart_button:hover {
-  transform: scale(1.2);
-}
-
-.pet-owner {
-  margin: 0.5rem 0 0;
-  font-size: 0.8rem;
-  text-align: center;
-} */
-
-/* Styles for mobile screens */
-/* @media only screen and (max-width: 600px) {
-  .container {
-    height: auto;
-    overflow-y: visible;
-  }
-
-  .pet {
+   nav {
+    display: flex;
+    font-family:'Fredoka One', cursive;
+    align-items: center;
+    justify-content:space-evenly;
+    background-color: #ffffff;
+    height: 54px;
+    border-bottom: 1px solid #dbdbdb;
+    padding: 0 20px;
+    position: static;
+    top: 0;
+    left: 0;
     width: 100%;
+  }
+  
+  nav h4 {
     margin: 0;
-    padding: 0.5rem;
-    border-radius: 0;
-    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: #262626;
   }
-
+  
+  nav a {
+    text-decoration: none;
+    color: #262626;
+    font-size: 16px;
+    font-weight: 600;
+    margin-left: 20px;
+  }
+  
+  nav a:hover {
+    color: #3897f0;
+  }
+  
+  nav a.active {
+    color: #3897f0;
+  }
+  
+  nav a:last-child {
+    margin-right: 0;
+  }
+  
+   .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 70px;
+    padding: 20px;
+    font-family: 'Fredoka', sans-serif;
+  }
+  
   .pet-image {
-    border-radius: 0;
-    margin-bottom: 0.5rem;
+    margin: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.0975);
   }
-
+  
+  .pet-details {
+    margin: 10px;
+    max-width: 320px;
+  }
+  
   .pet-name {
-    font-size: 1.2rem;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
   }
-
-  .pet-species,
-  .pet-food,
-  .pet-owner {
-    font-size: 0.8rem;
+  
+  .pet-species {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
   }
+  
+  .pet-food {
+    font-size: 14px;
+    margin: 0;
+  }
+  
+  .heart_button {
+    background-color: transparent;
+    border: none;
+    color: #ed4956;
+    font-size: 16px;
+    margin-right: 5px;
+    padding: 0;
+    vertical-align: middle;
+    transition: transform 0.2s ease-in-out;
 }
-ul{
-  list-style: none;
-} */ 
+
+.heart_button:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.heart_button:active {
+    transform: scale(0.8);
+}
+
+  @media only screen and (max-width: 600px) {
+    nav {
+      height: 64px;
+      flex-direction: column;
+      justify-content: center;
+    }
+  
+    nav h4, nav a {
+      margin: 10px 0;
+    }
+  } 

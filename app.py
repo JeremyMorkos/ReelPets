@@ -15,6 +15,7 @@ from models.heart import heart_counter
 
 
 app = Flask(__name__)
+
 app.config['SECRET_KEY'] = 'super secret key'
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -63,28 +64,31 @@ def login_post():
         session['id'] = user['id']
         return redirect('/')
     else:
-        flash('Information is incorrect', 'error')
+        flash('Login information is incorrect, try again!', 'error')
         return render_template('login.html')
     
 @app.post('/hearts')
 def heart_pet_post():
-
         user_id = session['id']
         pet_id = request.args.get('pet_id')
-        heart_counter(user_id, pet_id)
-        return redirect('/')
-        
+        num_hearts = heart_counter(user_id, pet_id)
+
+        return {
+            "num_hearts": num_hearts
+        }
+
 @app.get('/profile')
-def profile_get():
+def profile_get(): 
 
     if 'name' not in session:
-        flash('Sorry only members can add pets!', 'error')
+        flash('Sorry only members can create a profile!', 'error')
         return redirect('/')
     else:
+        
         user_pet = display_pet_reel_user(session['name'])
         return render_template('profile.html',user_pet=user_pet)
     
-@app.post('/profile')
+@app.post('/profile') 
 def profile_post():
             
             user_id = session['name'] 
@@ -95,28 +99,37 @@ def profile_post():
             insert_pet(name,type,image_url,favourite_food,user_id)
             return redirect('/profile')
   
+@app.get('/about/<user_name>')
+def view_user_profile(user_name):
+    if user_name == session['name']:
+         return redirect('/profile')
+     
+    elif 'name' in session:
+        user_pet = display_pet_reel_user(user_name)
+        return render_template('about.html', user_pet=user_pet,user_name=user_name)
+   
+    else:
+        flash('Sorry only members can see profiles', 'error')
+        return redirect('/')
 
-@app.route('/logout')
+@app.get('/logout')
 def logout():
     session.pop('name', None)
+    session.pop('id', None)
     return redirect('/')
 
 @app.get('/delete')
 def delete_user_pet_get():
     pet_id = request.args.get('id')
     pet = select_one_pet(pet_id)
-    return render_template('delete.html', pet_id=pet_id, pet=pet)
+    return render_template('delete.html',  pet=pet)
 
 
 @app.post('/delete')
 def delete_user_pet_post():
     pet_id = request.form.get('id')
-    select_one_pet(pet_id)
     delete_pet(pet_id)
     return redirect('/profile')
-
- 
-
 
 if __name__ == "__main__":
     app.run(debug = True)

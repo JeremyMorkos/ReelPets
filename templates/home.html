@@ -5,20 +5,25 @@
 {% endblock title %}
 
 {% block main %}
+<h1> Petzone </h1>
 {% for pet in pet_reel %}
+    <input type="hidden" name="id" value="{{ pet.id }}">
     <div class = "container">
-        <a href = "/"><img width= "500" class="pet-image" src="{{ pet.image_url }}" alt="{{ pet.name }}"></a>
+        <a href = "/about/{{ pet.user_name }}"><img width= "500" class="pet-image" src="{{ pet.image_url }}" alt="{{ pet.name }}"></a>
         <div class="pet-details">
             <h3 class="pet-name">{{pet.name}}</h3>
             <p class="pet-species">{{pet.type}}</p>
-            <p class="pet-food">{{pet.favourite_food}}</p>
+            <p class="pet-food">Enjoys {{pet.favourite_food}}</p>
            
             {% if 'name' in session %}
             <button data-pet-id= "{{ pet.id }}" class = "heart_button">❤️ </button>
-            <span> {{pet.num_hearts}}</span>
+            <span id= "num_hearts_{{pet.id}}"> {{pet.num_hearts }}</span>
+            {% else %}
+            <span data-pet-id= "{{ pet.id }}" class = "heart_button">❤️ </span>
+            <span id= "num_hearts_{{pet.id}}"> {{pet.num_hearts }}</span>
            {%endif%}
 
-            <p class="pet-owner">belongs to :{{pet.user_name}}</p>
+            <p class="pet-owner">Profile {{pet.user_name}}</p>
         </div>
     </div>
 

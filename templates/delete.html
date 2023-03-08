@@ -5,11 +5,18 @@ Delete page
 {% endblock title %}
 
 {% block main %}
-<p> Are you sure you want to delete {{pet.name}}?</p>
+<h3> Are you sure you want to delete {{pet.name}}?</h3>
+<img class="pet-image" width = "500"  src="{{ pet.image_url }}" alt="{{ pet.name }}">
+<p class="pet-species">{{ pet.type }}</p>
+<p class="pet-food">{{ pet.favourite_food }}</p>
+<p id = "heart_button">❤️{{ pet.hearts }} {{pet.num_hearts}}</p>
+<p> Loves {{pet.favourite_food}}</p>
+
     <form action= "/delete" method="post">
-        <input type="hidden" name="id" value="{{pet_id}}">  
+        <input type="hidden" name="id" value="{{pet.id}}">  
         <button type="submit">Yes</button>
     </form>
+
     <a href="/profile"><button type="button">No</button></a>
 
 {% endblock main%}

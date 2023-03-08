@@ -7,7 +7,7 @@ Signup Page
 
 {% block main %}
 <h1>Signup Page</h1>
-<form action = "/signup" method = "post">
+<form name = "signup" action = "/signup" method = "post">
 
 <label for = "user_name">UserName</label>
 <input type = "text" name = "user_name" placeholder="User Name" >
@@ -18,7 +18,7 @@ Signup Page
 <label for = "password_check">Confirm password</label>
 <input type = "password"  name = "password_check" placeholder= "Confirm password">
 
-<button type = "submit">Signup</button>
+<button id = "signup" type = "submit">Signup</button>
 </form>
 
 {% endblock main%}

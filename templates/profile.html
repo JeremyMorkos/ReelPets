@@ -26,7 +26,7 @@ Profile page
 </form>
 {% if user_pet %}
   <h2>Your pets</h2>
-  <div>
+
   {% for pet in user_pet %}
   
       <img class="pet-image" width = "500"  src="{{ pet.image_url }}" alt="{{ pet.name }}">
@@ -37,9 +37,13 @@ Profile page
       </form>
      
       <h3 class="pet-name"></h3>{{ pet.name }}</h3>
+
       <p class="pet-species">{{ pet.type }}</p>
-      <p class="pet-food">{{ pet.favourite_food }}</p>
-      <p id = "heart_button">❤️{{ pet.hearts }}</p>
+
+      <p class="pet-food"> Loves {{ pet.favourite_food }}</p>
+      
+      <span id = "heart_button">❤️{{pet.num_hearts }}</span>
+    
    
   {% endfor %}
   </div>

@@ -14,7 +14,6 @@ CREATE TABLE pets (
   type VARCHAR(254),
   image_url TEXT NOT NULL,
   favourite_food VARCHAR(254),
-  num_hearts INT DEFAULT 0,
   user_id INT,
   CONSTRAINT fk_pets_users
     FOREIGN KEY(user_id)
@@ -27,12 +26,12 @@ CREATE TABLE user_hearts(
   user_id INT,
     CONSTRAINT fk_user_hearts_users
     FOREIGN KEY(user_id)
-    REFERENCES users(id),
+    REFERENCES users(id) ON DELETE CASCADE,
 
   pet_id INT,
     CONSTRAINT fk_user_hearts_pets
     FOREIGN KEY(pet_id)
-    REFERENCES pets(id)
+    REFERENCES pets(id) ON DELETE CASCADE
 );  
 
 TRUNCATE TABLE users CASCADE;
