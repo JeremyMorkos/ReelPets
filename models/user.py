@@ -12,9 +12,22 @@ def signup_user(user_name, password_hash, image_url):
 
     )
 
-def update_profile(id,user_name,password_hash, image_url):
+def update_password(id,password_hash):
     db.update(
-              "UPDATE users SET user_name = %s, password_hash = %s, image_url = %s WHERE id = %s",
-              (user_name,password_hash,image_url,id)
+              "UPDATE users SET password_hash = %s WHERE id = %s",
+              (password_hash,id)
     )
+
+def update_pofile_picture(id,image_url):
+    db.update(
+              "UPDATE users SET image_url = %s WHERE id = %s",
+              (image_url,id)
+    )
+
+def update_username(id,user_name):
+    db.update(
+              "UPDATE users SET user_name = %s WHERE id = %s",
+              (user_name,id)
+    )
+
 

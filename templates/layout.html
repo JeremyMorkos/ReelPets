@@ -17,10 +17,20 @@
         {% if 'name' in session %}
         <img class="profile-image"  src="{{image_url }}" alt="{{ session['name'] }}">Welcome: {{session['name']}}
         <a href="/logout">Logout</a>
-        <a href = "/edit_profile">Edit-Profile</a>
+        <div class = "Edit-Profile">
+            <label for = "Edit-Profile">Edit Profile</label>
+            <div class = "Edit-Options">
+                <ul>
+                    <li><a href = "/edit_username" >Username</a></li>
+                    <li><a href = "/edit_password" >Password</a></li>
+                    <li><a href = "/edit_profile_picture" >ProfilePicture</a></li>
+                </ul>
+            </div>
+        </div>
+        <a href = "/profile">Profile</a>
         {% endif %}
             <a href = "/">Home</a>
-            <a href = "/profile">Profile</a>
+        
     </nav>
     <div>
         {% with messages = get_flashed_messages(with_categories=true) %}

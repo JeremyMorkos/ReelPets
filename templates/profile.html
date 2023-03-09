@@ -10,39 +10,52 @@ Profile page
 <form name = "register" action = "/profile" method = "post" enctype="multipart/form-data">
     <input type="hidden" name="user_id" value="{{ session['name'] }}">
   
+    <div class="form-group">
     <label for = "name">Name</label>
     <input type ="text" name = "name" placeholder="Pets name">
-
+  </div>
+    <div class="form-group">
     <label for = "type">Type</label>
     <input type ="text" name = "type" placeholder="Type of pet">
-
+  </div>
+    <div class="form-group">
     <input type = "file" name = "image" />
+  </div>
 
+    <div class="form-group">
     <label for = "favourite_food">Favourite food</label>
     <input type = "text" name = "favourite_food" placeholder="Favourite food">
-
+  </div>
     <button id = "profile_btn" type = "Submit">Submit</button>
 </form>
+
 {% if user_pet %}
   <h2>Your pets</h2>
-
+  <div class="container_profile"></div>
   {% for pet in user_pet %}
-  
+    <div class="profile-gallery">
+
       <img class="pet-image" width = "500"  src="{{ pet.image_url }}" alt="{{ pet.name }}">
-      <div class="pet-details"></div>
-      <form method="GET" action="/delete">
-        <input type="hidden" name="id" value="{{ pet.id }}">
-        <button id = "delete" type = "Submit">Delete</button>
-      </form>
-     
-      <h3 class="pet-name"></h3>{{ pet.name }}</h3>
-
-      <p class="pet-species">{{ pet.type }}</p>
-
+      <h3 class="pet-name">{{ pet.name }}<span class="pet-species"> the {{ pet.type }}</span></h3>
       <p class="pet-food"> Loves {{ pet.favourite_food }}</p>
+
+      <div class="pet-details"></div>
+
+        <div class="actions"></div>
+          <span id = "heart_button">❤️{{pet.num_hearts }}</span>
+          <form method="GET" action="/delete">
+          <input type="hidden" name="id" value="{{ pet.id }}">
+          <button id = "delete" type = "Submit">Delete</button>
+          </form>
+        </div>
+     
       
-      <span id = "heart_button">❤️{{pet.num_hearts }}</span>
-    
+ 
+
+      
+      
+    </div>
+  </div>
    
   {% endfor %}
   </div>

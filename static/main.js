@@ -4,6 +4,7 @@ const validateProfile = (event) => {
     const type = document.forms["register"]["type"].value;
     const imageUrl = document.forms["register"]["image"].value;
     const favouriteFood = document.forms["register"]["favourite_food"].value;
+    
     if (name === "" || type === "" || imageUrl === "" || favouriteFood === "")  {
         alert("All fields must be filled out");
         event.preventDefault(); 
@@ -37,12 +38,13 @@ if (signupBtn)
     signupBtn.addEventListener('click', validateSignup)
 
 
+
 const buttons = document.querySelectorAll('.heart_button')
  
 for (let i = 0 ; i < buttons.length; i++) {
     buttons[i].addEventListener('click', function(event) {
         const button = event.target;
-        
+
 
         // fetch - performs http request ( get/post) - then fill the request. - returns a Promise
         fetch(`/hearts?pet_id=${button.dataset.petId}`, {

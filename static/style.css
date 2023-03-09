@@ -1,6 +1,11 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Fredoka+One&family=Nunito+Sans:wght@700&family=Open+Sans:wght@300&display=swap');
 
+*{
+  box-sizing: border-box;
+}
+
+
    body{
     margin:auto;
     align-items: center;
@@ -110,6 +115,35 @@
 .heart_button:active {
     transform: scale(0.8);
 }
+
+  .Edit-Profile {
+    display: inline-block;
+    position: relative;
+    
+  }
+
+  .Edit-Options{
+    display: none;
+    position: absolute;
+    overflow: auto;
+  }
+  
+  .Edit-Options li{
+    list-style: none;
+    padding: 5px;
+
+  }
+  
+  .Edit-Options ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+  }
+
+  .Edit-Profile:hover .Edit-Options {
+    display: block;
+  } 
 
   @media only screen and (max-width: 600px) {
     nav {

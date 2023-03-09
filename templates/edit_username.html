@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Edit user details page
+{% endblock title %}
+
+{% block main %}
+<h1>Edit page</h1>
+<form name = "edit_username" action = "/edit_username" method = "post">
+    <input type="hidden" name="user_id" value="{{ session['id'] }}">
+
+    <label for = "user_name">UserName</label>
+    <input type = "text" name = "user_name" placeholder="User Name" >
+
+    <button id = "signup" type = "submit">Edit</button>
+    </form>
+
+
+{% endblock main %}

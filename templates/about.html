@@ -15,8 +15,8 @@ about page
   <input type="hidden" name="id" value="{{ pet.id }}">
 </form>
 
-<h3 class="pet-name"></h3>{{ pet.name }}</h3>
-<p class="pet-species">{{ pet.type }}</p>
+<h3 class="pet-name">{{ pet.name }}<span class="pet-species"> the {{ pet.type }}</span></h3>
+
 <p class="pet-food"> Loves {{ pet.favourite_food }}</p>
 <p id = "heart_button">❤️{{ pet.hearts }} {{pet.num_hearts}}</p>
 {% endfor %}

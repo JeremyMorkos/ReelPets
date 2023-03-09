@@ -10,11 +10,8 @@ from cloudinary import CloudinaryImage
 import cloudinary.uploader
 from werkzeug.security import generate_password_hash, check_password_hash
 from models.pet import display_pet_reel, insert_pet, display_pet_reel_user,delete_pet, select_one_pet
-from models.user import load_user, signup_user,update_profile
+from models.user import load_user, signup_user,update_password,update_pofile_picture,update_username
 from models.heart import heart_counter
-
-
-
 
 app = Flask(__name__)
 
@@ -116,35 +113,64 @@ def profile_post():
             image_url = upload_image['url']
 
             insert_pet(name,type,image_url,favourite_food,user_id)
-
-
             return redirect('/profile')
   
-@app.get('/edit_profile')
-def edit_profile_get():
-     return render_template('edit_profile.html')
+@app.get('/edit_password')
+def edit_password_get():
+    user_name = session['name']
+    user = load_user(user_name)
+    image_url = user['image_url']
+    return render_template('edit_password.html',image_url=image_url)
 
-@app.post('/edit_profile')
-def edit_profile_post():
+@app.post('/edit_password')
+def edit_password_post():
+
     user_id = session['id']
-    user_name = request.form.get('user_name')
     password = request.form.get('password')
-    image = request.files.get('image')    
-    upload_image = cloudinary.uploader.upload(image)
-    image_url = upload_image['url']
-    
     password_hash = generate_password_hash(password)
     password_check = request.form.get('password_check')
 
     if password != password_check:
         flash('Passwords dont match', 'error')
-        return render_template('edit_profile.html')
-    
+        return render_template('edit_password.html')
     else:
-        update_profile(user_id,user_name,password_hash, image_url)
-        session['name'] = user_name
-        return redirect('/profile')
+         update_password(user_id,password_hash)
+         return redirect('/profile')
+
+@app.get('/edit_profile_picture')
+def edit_profile_picture_get():
+    user_name = session['name']
+    user = load_user(user_name)
+    image_url = user['image_url']
+    return render_template('edit_profile_picture.html',image_url=image_url)
+
+@app.post('/edit_profile_picture')
+def edit_profile_picture_post():
+    user_id = session['id']
+    image = request.files.get('image')    
+    upload_image = cloudinary.uploader.upload(image)
+    image_url = upload_image['url']
+    
+    update_pofile_picture(user_id,image_url)
+    return redirect('/profile')
  
+@app.get('/edit_username')
+def edit_username_get():
+    user_name = session['name']
+    user = load_user(user_name)
+    image_url = user['image_url']
+    return render_template('edit_username.html',image_url=image_url)
+
+@app.post('/edit_username')
+def edit_username_post():
+    user_id = session['id']
+    user_name = request.form.get('user_name')
+    update_username(user_id, user_name)
+    session['name'] = user_name
+    return redirect('/profile')
+
+
+
 @app.get('/about/<user_id>')
 def view_user_profile(user_id):
     
