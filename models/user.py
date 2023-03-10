@@ -24,10 +24,10 @@ def update_pofile_picture(id,image_url):
               (image_url,id)
     )
 
-def update_username(id,user_name):
-    db.update(
-              "UPDATE users SET user_name = %s WHERE id = %s",
-              (user_name,id)
-    )
+# def update_username(id,user_name):
+#     db.update(
+#               "UPDATE users SET user_name = %s WHERE id = %s",
+#               (user_name,id)
+#     )
 
 

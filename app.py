@@ -9,8 +9,8 @@ from flask import (
 from cloudinary import CloudinaryImage
 import cloudinary.uploader
 from werkzeug.security import generate_password_hash, check_password_hash
-from models.pet import display_pet_reel, insert_pet, display_pet_reel_user,delete_pet, select_one_pet
-from models.user import load_user, signup_user,update_password,update_pofile_picture,update_username
+from models.pet import display_pet_reel, insert_pet, display_pet_reel_user,delete_pet, select_one_pet,update_image
+from models.user import load_user, signup_user,update_password,update_pofile_picture
 from models.heart import heart_counter
 
 app = Flask(__name__)
@@ -90,11 +90,6 @@ def heart_pet_post():
 
 @app.get('/profile')
 def profile_get(): 
-
-    if 'name' not in session:
-        flash('Sorry only members can create a profile!', 'error')
-        return redirect('/')
-    else:
         user_name = session['name']
         user = load_user(user_name)
         image_url = user['image_url']
@@ -154,22 +149,37 @@ def edit_profile_picture_post():
     update_pofile_picture(user_id,image_url)
     return redirect('/profile')
  
-@app.get('/edit_username')
-def edit_username_get():
-    user_name = session['name']
-    user = load_user(user_name)
-    image_url = user['image_url']
-    return render_template('edit_username.html',image_url=image_url)
+# @app.get('/edit_username')
+# def edit_username_get():
+#     user_name = session['name']
+#     user = load_user(user_name)
+#     image_url = user['image_url']
+#     return render_template('edit_username.html',image_url=image_url)
 
-@app.post('/edit_username')
-def edit_username_post():
-    user_id = session['id']
-    user_name = request.form.get('user_name')
-    update_username(user_id, user_name)
-    session['name'] = user_name
-    return redirect('/profile')
+# @app.post('/edit_username')
+# def edit_username_post():
+#     user_id = session['id']
+#     user_name = request.form.get('user_name')
+#     update_username(user_id, user_name)
+#     session['name'] = user_name
+#     return redirect('/profile')
 
 
+
+@app.get('/edit_pet_picture/<pet_id>')
+def edit_pet_picture_get(pet_id):
+     pet = select_one_pet(pet_id)
+     return render_template('edit_pet_picture.html',pet=pet)
+
+@app.post('/add_frame')
+def add_frame():
+    pet_id = request.form.get('pet_id')
+    pet = select_one_pet(pet_id)
+    link = pet['image_url']
+    link = link.rsplit('/', 1)[-1]
+    image_url = CloudinaryImage(link).build_url( width=300, radius=2, border="5px_solid_rgb:777777")
+    update_image(pet_id,image_url)
+    return redirect(f"edit_pet_picture/{pet_id}")
 
 @app.get('/about/<user_id>')
 def view_user_profile(user_id):

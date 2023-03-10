@@ -1,158 +1,191 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Fredoka+One&family=Nunito+Sans:wght@700&family=Open+Sans:wght@300&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Fredoka:wght@600;700&family=Londrina+Shadow&family=Monoton&display=swap');
 
-*{
+* {
   box-sizing: border-box;
 }
 
+nav {
+  display: flex;
+  font-family: "Fredoka One", cursive;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #ffffff;
+  height: 54px;
+  padding: 0 20px;
+  border-bottom: 1px solid #c9c4c4;
+}
 
-   body{
-    margin:auto;
-    align-items: center;
-    text-align: center;
-   }
+#profile-pic-name {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+.profile-image {
+  border-radius: 20px;
+  width: 40px;
+  padding: 2px;
+  margin: 5px;
+}
 
-   nav {
-    display: flex;
-    font-family:'Fredoka One', cursive;
-    align-items: center;
-    justify-content:space-evenly;
-    background-color: #ffffff;
-    height: 54px;
-    border-bottom: 1px solid #dbdbdb;
-    padding: 0 20px;
-    position: static;
-    top: 0;
-    left: 0;
-    width: 100%;
-  }
-  
-  nav h4 {
-    margin: 0;
-    font-size: 16px;
-    font-weight: 600;
-    color: #262626;
-  }
-  
-  nav a {
-    text-decoration: none;
-    color: #262626;
-    font-size: 16px;
-    font-weight: 600;
-    margin-left: 20px;
-  }
-  
-  nav a:hover {
-    color: #3897f0;
-  }
-  
-  nav a.active {
-    color: #3897f0;
-  }
-  
-  nav a:last-child {
-    margin-right: 0;
-  }
+.logo {
+  width: 60px;
+}
 
-  .profile-image{
-    width: 35px;
-    border-radius: 20px;
-    
-  }
-  
-   .container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 70px;
-    padding: 20px;
-    font-family: 'Fredoka', sans-serif;
-  }
-  
-  .pet-image {
-    margin: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.0975);
-  }
-  
-  .pet-details {
-    margin: 10px;
-    max-width: 320px;
-  }
-  
-  .pet-name {
-    font-size: 18px;
-    font-weight: 600;
-    margin: 0;
-  }
-  
-  .pet-species {
-    font-size: 14px;
-    font-weight: 600;
-    margin: 0;
-  }
-  
-  .pet-food {
-    font-size: 14px;
-    margin: 0;
-  }
-  
-  .heart_button {
-    background-color: transparent;
-    border: none;
-    color: #ed4956;
-    font-size: 16px;
-    margin-right: 5px;
-    padding: 0;
-    vertical-align: middle;
-    transition: transform 0.2s ease-in-out;
+.logo-text {
+  font-family: "Londrina Shadow", cursive;
+}
+
+nav a {
+  padding: 20px 30px;
+  text-decoration: none;
+  color: #262626;
+  font-size: 16px;
+}
+
+nav a:hover {
+  color: #3897f0;
+}
+
+nav a.active {
+  color: #3897f0;
+}
+
+.Edit-Profile {
+  display: inline-block;
+  position: relative;
+}
+
+.Edit-Options {
+  display: none;
+  position: absolute;
+  overflow: auto;
+}
+
+.Edit-Options li {
+  list-style: none;
+  padding: 5px;
+}
+
+.Edit-Options ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.Edit-Profile:hover .Edit-Options {
+  display: block;
+}
+
+.error-message {
+  text-align: center;
+  font-family: "Fredoka", sans-serif;
+  color: #ed4956;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 70px;
+  margin-bottom: 70px; 
+  padding: 10px;
+  margin: 0 auto;
+  max-width: 600px;
+  font-family: "Fredoka", sans-serif;
+}
+
+.pet-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  box-shadow: inset;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.pet-details-container {
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  width: 100%;
+  font-family: "Fredoka One", cursive;
+}
+
+.pet-name {
+  display: inline;
+  flex:1;
+  font-size: 2.2rem;
+  font-family: "Londrina Shadow", cursive;
+  margin-bottom: 5px;
+
+}
+
+.pet-species {
+  padding:20px;
+  font-size: .8rem;
+  color: #777777;
+  font-family: "Fredoka One", cursive;
+  margin-bottom: 20px; 
+}
+
+.pet-food,
+.pet-owner {
+  font-size: 1rem;
+  font-weight: normal;
+  margin-top: 0.5rem;
+  color: #777777;
+  margin-bottom: 5px; 
+}
+
+.heart_button {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+}
+
+.num-hearts {
+  margin-left: 5px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+
+.heart_button {
+  background-color: transparent;
+  border: none;
+  color: #ed4956;
+  font-size: 16px;
+  margin-right: 5px;
+  padding: 0;
+  vertical-align: middle;
+  transition: transform 0.2s ease-in-out;
 }
 
 .heart_button:hover {
-    cursor: pointer;
-    transform: scale(1.2);
+  cursor: pointer;
+  transform: scale(1.2);
 }
 
 .heart_button:active {
-    transform: scale(0.8);
+  transform: scale(0.8);
 }
 
-  .Edit-Profile {
-    display: inline-block;
-    position: relative;
-    
-  }
-
-  .Edit-Options{
-    display: none;
-    position: absolute;
-    overflow: auto;
-  }
-  
-  .Edit-Options li{
-    list-style: none;
-    padding: 5px;
-
-  }
-  
-  .Edit-Options ul{
-    display: flex;
+@media only screen and (max-width: 600px) {
+  nav {
+    height: 64px;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: flex-start;
+    justify-content: center;
   }
 
-  .Edit-Profile:hover .Edit-Options {
-    display: block;
-  } 
-
-  @media only screen and (max-width: 600px) {
-    nav {
-      height: 64px;
-      flex-direction: column;
-      justify-content: center;
-    }
-  
-    nav h4, nav a {
-      margin: 10px 0;
-    }
-  } 
+  nav h4,
+  nav a {
+    margin: 10px 0;
+  }
+}

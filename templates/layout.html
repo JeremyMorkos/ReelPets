@@ -9,19 +9,22 @@
 </head>
 <body>
     <nav>
+        <h1 class = "logo-text"><img class = "logo" src = "/static/images/ReelPets.png">ReelPets</h1>
         {% if 'name' not in session %}
         <h4>Welcome Guest</h4>
         <a href="/login">Login</a>
         <a href="/signup">Signup</a>
         {% endif %}
         {% if 'name' in session %}
-        <img class="profile-image"  src="{{image_url }}" alt="{{ session['name'] }}">Welcome: {{session['name']}}
+        <span id = "profile-pic-name">
+       <span class = "profile-name">{{session['name']}}</span> <img class="profile-image"  src="{{ image_url }}" alt="{{ session['name'] }}">
+        </span>
         <a href="/logout">Logout</a>
         <div class = "Edit-Profile">
             <label for = "Edit-Profile">Edit Profile</label>
             <div class = "Edit-Options">
                 <ul>
-                    <li><a href = "/edit_username" >Username</a></li>
+                    <!-- <li><a href = "/edit_username" >Username</a></li> -->
                     <li><a href = "/edit_password" >Password</a></li>
                     <li><a href = "/edit_profile_picture" >ProfilePicture</a></li>
                 </ul>
@@ -29,10 +32,10 @@
         </div>
         <a href = "/profile">Profile</a>
         {% endif %}
-            <a href = "/">Home</a>
-        
+        <a href = "/">Home</a>
+            
     </nav>
-    <div>
+    <div class = "error-message">
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %} 

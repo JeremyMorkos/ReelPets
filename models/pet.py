@@ -26,3 +26,9 @@ def select_one_pet(pet_id):
     return pet
 
  
+def update_image(id,image_url):
+    db.update(  
+              "UPDATE pets SET image_url = %s WHERE id = %s",
+              (image_url,id)
+
+    )

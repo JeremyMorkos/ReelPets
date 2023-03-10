@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Edit pet_picture
+{% endblock title %}
+
+{% block main %}
+<h1>Edit pet_picture</h1>
+
+    <h1>{{pet.name}}</h1>
+    <img class="pet-edit" width = "500px" src="{{ pet.image_url }}" alt="{{ pet.name }}">
+
+    <form action = "/add_frame" method = "post">
+    <button  type = "submit" class = "add-frame ">Add frame</button>
+    <input type="hidden" name="pet_id" value="{{ pet.id }}">
+    </form>
+
+{% endblock main %}

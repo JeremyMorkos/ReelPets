@@ -45,7 +45,7 @@ Profile page
           <span id = "heart_button">❤️{{pet.num_hearts }}</span>
           <form method="GET" action="/delete">
           <input type="hidden" name="id" value="{{ pet.id }}">
-          <button id = "delete" type = "Submit">Delete</button>
+          <button id = "delete" type = "Submit">Delete</button> <a href = "/edit_pet_picture/{{pet.id}}" id = "edit" type = "Submit">Edit_picture</a>
           </form>
         </div>
      
