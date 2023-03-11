@@ -175,7 +175,7 @@ def add_frame():
     pet = select_one_pet(pet_id)
     link = pet['image_url']
     link = link.rsplit('/', 1)[-1]
-    image_url = CloudinaryImage(link).build_url( width=450, radius=0, border="5px_solid_rgb:0ca603")
+    image_url = CloudinaryImage(link).build_url( width=450, radius=0, border="5px_solid_rgb:000000")
     update_image(pet_id,image_url)
     return redirect(f"edit_pet_picture/{pet_id}")
 
