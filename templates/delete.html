@@ -5,18 +5,32 @@ Delete page
 {% endblock title %}
 
 {% block main %}
-<h3> Are you sure you want to delete {{pet.name}}?</h3>
-<img class="pet-image" width = "500"  src="{{ pet.image_url }}" alt="{{ pet.name }}">
-<p class="pet-species">{{ pet.type }}</p>
-<p class="pet-food">{{ pet.favourite_food }}</p>
-<p id = "heart_button">❤️{{ pet.hearts }} {{pet.num_hearts}}</p>
-<p> Loves {{pet.favourite_food}}</p>
 
+<h3 class="sure"> Permanently delete {{pet.name}}?</h3>
+<div class = "delete-button">
     <form action= "/delete" method="post">
         <input type="hidden" name="id" value="{{pet.id}}">  
-        <button type="submit">Yes</button>
-    </form>
-
-    <a href="/profile"><button type="button">No</button></a>
+        <button id = "yes-delete" type="submit">Yes</button>
+    </form>  
+        <a href="/profile" id = "no-dont"><button id = "no-dont-delete">No</button></a>
+</div>
+    <div class="container">
+        <div class = "pet-title">
+            <span class="pet-name"> {{pet.name}}
+            <p class="pet-species"> the {{ pet.type }}</p>
+            </span> 
+        </div>  
+            <div class = "pet-image-container ">
+                <div class = "pet-image">
+                <input type="hidden" name="id" value="{{ pet.id }}">
+                <a href = "/about/{{ pet.user_name }}">
+                <img class="pet-image" src="{{ pet.image_url }}" alt="{{ pet.name }}">
+                </a>
+                </div>
+            </div>
+                <div style = "font-size: 1.7rem;">&#128161;</div>
+                <p class="pet-food">Loves {{pet.favourite_food}}</p>
+                <button data-pet-id= "{{ pet.id }}" class = "heart_button" style="font-size:1.4rem">❤️ <span id= "num_hearts_{{pet.id}}"> {{pet.num_hearts }}</span></button>
+    </div>
 
 {% endblock main%}

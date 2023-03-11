@@ -1,19 +1,18 @@
 {% extends 'layout.html' %}
 
 {% block title %}
-Edit user details page
+Edit profile picture
 {% endblock title %}
 
 {% block main %}
-<h1>Edit Profile Picture</h1>
-<form name = "edit_profile_picture" action = "/edit_profile_picture" method = "post" enctype="multipart/form-data">
+<div class = "form-container">
+<h1 class = "edit-password">Update profile picture</h1>
+    <form name = "edit_profile_picture" action = "/edit_profile_picture" method = "post" enctype="multipart/form-data">
     <input type="hidden" name="user_id" value="{{ session['id'] }}">
-    
-    <label for = "image"> ProfilePicture</label>
-    <input type = "file" name = "image" />
-    
-    <button id = "signup" type = "submit">Edit</button>
+        <div class="edit-profile-pic">
+        <input type = "file" name = "image" />
+        <button id = "edit-picture" type = "submit">Update</button>
     </form>
-
-
+        </div>
+</div>
 {% endblock main %}

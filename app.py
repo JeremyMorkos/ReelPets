@@ -80,35 +80,33 @@ def login_post():
     
 @app.post('/hearts')
 def heart_pet_post():
-        user_id = session['id']
-        pet_id = request.args.get('pet_id')
-        num_hearts = heart_counter(user_id, pet_id)
+    user_id = session['id']
+    pet_id = request.args.get('pet_id')
+    num_hearts = heart_counter(user_id, pet_id)
 
-        return {
+    return {
             "num_hearts": num_hearts
         }
 
 @app.get('/profile')
 def profile_get(): 
-        user_name = session['name']
-        user = load_user(user_name)
-        image_url = user['image_url']
-        user_pet = display_pet_reel_user(session['name'])
-        return render_template('profile.html',user_pet=user_pet, image_url=image_url)
+    user_name = session['name']
+    user = load_user(user_name)
+    image_url = user['image_url']
+    user_pet = display_pet_reel_user(session['name'])
+    return render_template('profile.html',user_pet=user_pet, image_url=image_url)
     
 @app.post('/profile') 
 def profile_post():
-            
-            user_id = session['name'] 
-            name = request.form.get('name')
-            type = request.form.get('type')
-            image = request.files.get('image')
-            favourite_food = request.form.get('favourite_food')
-            upload_image = cloudinary.uploader.upload(image)
-            image_url = upload_image['url']
-
-            insert_pet(name,type,image_url,favourite_food,user_id)
-            return redirect('/profile')
+    user_id = session['name'] 
+    name = request.form.get('name')
+    type = request.form.get('type')
+    image = request.files.get('image')
+    favourite_food = request.form.get('favourite_food')
+    upload_image = cloudinary.uploader.upload(image)
+    image_url = upload_image['url']
+    insert_pet(name,type,image_url,favourite_food,user_id)
+    return redirect('/profile')
   
 @app.get('/edit_password')
 def edit_password_get():
@@ -119,7 +117,6 @@ def edit_password_get():
 
 @app.post('/edit_password')
 def edit_password_post():
-
     user_id = session['id']
     password = request.form.get('password')
     password_hash = generate_password_hash(password)
@@ -164,12 +161,13 @@ def edit_profile_picture_post():
 #     session['name'] = user_name
 #     return redirect('/profile')
 
-
-
 @app.get('/edit_pet_picture/<pet_id>')
 def edit_pet_picture_get(pet_id):
-     pet = select_one_pet(pet_id)
-     return render_template('edit_pet_picture.html',pet=pet)
+    pet = select_one_pet(pet_id)
+    user_name = session['name']
+    user = load_user(user_name)
+    image_url = user['image_url']
+    return render_template('edit_pet_picture.html',pet=pet,image_url=image_url)
 
 @app.post('/add_frame')
 def add_frame():
@@ -177,7 +175,7 @@ def add_frame():
     pet = select_one_pet(pet_id)
     link = pet['image_url']
     link = link.rsplit('/', 1)[-1]
-    image_url = CloudinaryImage(link).build_url( width=300, radius=2, border="5px_solid_rgb:777777")
+    image_url = CloudinaryImage(link).build_url( width=450, radius=0, border="5px_solid_rgb:0ca603")
     update_image(pet_id,image_url)
     return redirect(f"edit_pet_picture/{pet_id}")
 

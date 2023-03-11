@@ -6,61 +6,49 @@ Profile page
 
 
 {% block main %} 
-<h1> Profile page! </h1>
-<form name = "register" action = "/profile" method = "post" enctype="multipart/form-data">
-    <input type="hidden" name="user_id" value="{{ session['name'] }}">
-  
+<div class = "form-container">
+  <form  class = "profile-form" name = "register" action = "/profile" method = "post" enctype="multipart/form-data">
+  <input type="hidden" name="user_id" value="{{ session['name'] }}"> 
     <div class="form-group">
     <label for = "name">Name</label>
     <input type ="text" name = "name" placeholder="Pets name">
-  </div>
-    <div class="form-group">
-    <label for = "type">Type</label>
-    <input type ="text" name = "type" placeholder="Type of pet">
-  </div>
-    <div class="form-group">
-    <input type = "file" name = "image" />
-  </div>
-
-    <div class="form-group">
-    <label for = "favourite_food">Favourite food</label>
-    <input type = "text" name = "favourite_food" placeholder="Favourite food">
-  </div>
-    <button id = "profile_btn" type = "Submit">Submit</button>
-</form>
-
-{% if user_pet %}
-  <h2>Your pets</h2>
-  <div class="container_profile"></div>
-  {% for pet in user_pet %}
-    <div class="profile-gallery">
-
-      <img class="pet-image" width = "500"  src="{{ pet.image_url }}" alt="{{ pet.name }}">
-      <h3 class="pet-name">{{ pet.name }}<span class="pet-species"> the {{ pet.type }}</span></h3>
-      <p class="pet-food"> Loves {{ pet.favourite_food }}</p>
-
-      <div class="pet-details"></div>
-
-        <div class="actions"></div>
-          <span id = "heart_button">❤️{{pet.num_hearts }}</span>
-          <form method="GET" action="/delete">
-          <input type="hidden" name="id" value="{{ pet.id }}">
-          <button id = "delete" type = "Submit">Delete</button> <a href = "/edit_pet_picture/{{pet.id}}" id = "edit" type = "Submit">Edit_picture</a>
-          </form>
-        </div>
-     
-      
- 
-
-      
-      
     </div>
-  </div>
-   
-  {% endfor %}
-  </div>
+      <div class="form-group">
+      <label for = "type">Type</label>
+      <input type ="text" name = "type" placeholder="Type of pet">
+      </div>
+        <div class="form-group">
+        <input type = "file" name = "image" />
+        </div>
+          <div class="form-group">
+          <label for = "favourite_food">Favourite food</label>
+          <input type = "text" name = "favourite_food" placeholder="Favourite food">
+          </div>
+          <button id = "profile_btn" type = "Submit">Add</button>
+  </form>
+</div>
+{% if user_pet %}
+<h1 class = "your-pets">Pets</h1>
+{% for pet in user_pet %}
+<div class="profile-container">
+    <img class="profile-images" src="{{ pet.image_url }}" alt="{{ pet.name }}">
+      <div class="profile-details-container">
+      <span class="profile-names">{{ pet.name }}
+      <p class="profile-species"> the {{ pet.type }}</p> <p id = "heart_button">❤️ {{pet.num_hearts}}</p> 
+      <p class="pet-food">&#128161;Loves {{pet.favourite_food}}</p>
+      </span> 
+      <form method="GET" action="/delete">
+      <input type="hidden" name="id" value="{{ pet.id }}">
+      <button id = "delete" type = "Submit">Delete</button>
+      </form>
+      <a href = "/edit_pet_picture/{{pet.id}}" id = "edit" type = "Submit"> <button id = "edit-frame">Edit picture</button></a> 
+      </div>
+</div>
+  
+{% endfor %}
 {% else %}
-  <p>You don't have any pets yet!</p>
+<h4 class = "no-pets-yet">You don't have any pets yet!</h4>
 {% endif %}
+    
 {% endblock main %}
 

@@ -7,29 +7,33 @@
 {% block main %}  
 {% for pet in pet_reel %}
 <div class="container">
-    
-    <h3 class="pet-name"> {{pet.name}}
+    <div class = "pet-title">
+        <span class="pet-name"> {{pet.name}}
         <p class="pet-species"> the {{ pet.type }}</p>
-    </h3>
-    <p class="pet-food">Loves {{pet.favourite_food}}</p>
-    <div class = "pet-image">
-        <input type="hidden" name="id" value="{{ pet.id }}">
-        <a href = "/about/{{ pet.user_name }}">
-            <img class="pet-image" src="{{ pet.image_url }}" alt="{{ pet.name }}">
-        </a>
-    </div>
-            <div class="pet-details-container">
-                <p class="pet-owner">Profile {{pet.user_name}}</p>
-
+        </span> 
+        <div style="font-size:1.7rem;">&#129302;</div> 
+        <p class="pet-owner">{{pet.user_name}}</p>
+    </div>  
+        <div class = "pet-image-container ">
+            <div class = "pet-image">
+                <input type="hidden" name="id" value="{{ pet.id }}">
+                <a href = "/about/{{ pet.user_name }}">
+                <img class="pet-image" src="{{ pet.image_url }}" alt="{{ pet.name }}">
+                </a>
+            </div>
+        </div>
+                    <div class="pet-details-container">
+                        <div style = "font-size: 1.7rem;">&#128161;</div>
+                        <p class="pet-food">Loves {{pet.favourite_food}}</p>
                 {% if 'name' in session %}
-                <button data-pet-id= "{{ pet.id }}" class = "heart_button">❤️ <span id= "num_hearts_{{pet.id}}"> {{pet.num_hearts }}</span></button>
+                <button data-pet-id= "{{ pet.id }}" class = "heart_button" style="font-size:1.4rem">❤️ <span id= "num_hearts_{{pet.id}}"> {{pet.num_hearts }}</span></button>
               
                 {% else %}
                 <span data-pet-id= "{{ pet.id }}" class = "heart_button">❤️ </span>
                 <span id= "num_hearts_{{pet.id}}">{{pet.num_hearts }}</span>
                 {%endif%}
-
-            </div>  
+                    </div> 
+ 
 </div>
 
 {% endfor %}

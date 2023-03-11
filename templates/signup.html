@@ -6,22 +6,26 @@ Signup Page
 {% endblock title %}
 
 {% block main %}
-<h1>Signup Page</h1>
-<form name = "signup" action = "/signup" method = "post" enctype="multipart/form-data">
-
-<label for = "user_name">UserName</label>
-<input type = "text" name = "user_name" placeholder="User Name" >
-
-<label for = "image"> ProfilePicture</label>
-<input type = "file" name = "image" />
-
-<label for = "password">Password</label>
-<input type = "password"  name = "password" placeholder="Password">
-
-<label for = "password_check">Confirm password</label>
-<input type = "password"  name = "password_check" placeholder= "Confirm password">
-
-<button id = "signup" type = "submit">Signup</button>
-</form>
-
+<div class = "form-container">
+<h1 class="sign-up-page">Signup Page</h1>
+    <form name = "signup" action = "/signup" method = "post" enctype="multipart/form-data">
+        <div class="form-group">
+        <label for = "user_name">UserName</label>
+        <input type = "text" name = "user_name" placeholder="User Name" >
+        </div>
+            <div class="form-group">
+            <label for = "image"> ProfilePicture</label>
+            <input type = "file" name = "image" />
+            </div>
+                <div class="edit-group">
+                <label for = "password">Password</label>
+                <input type = "password"  name = "password" placeholder="Password">
+                </div>
+                    <div class="edit-group">
+                    <label for = "password_check">Confirm password</label>
+                    <input type = "password"  name = "password_check" placeholder= "Confirm password">
+                    </div>
+                    <button id = "signup-btn" type = "submit">Signup</button>
+    </form>
+</div>
 {% endblock main%}

@@ -21,6 +21,7 @@ nav {
   align-items: center;
   text-align: center;
 }
+
 .profile-image {
   border-radius: 20px;
   width: 40px;
@@ -87,38 +88,46 @@ nav a.active {
 .container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-end;
-  margin-top: 70px;
-  margin-bottom: 70px; 
-  padding: 10px;
+  padding: 50px;
   margin: 0 auto;
   max-width: 600px;
-  font-family: "Fredoka", sans-serif;
+}
+
+.pet-image-container {
+  width: 600px;
+  height: 500px;
+}
+
+.pet-title{
+  display: flex;
+  width: 600px;
+  flex-wrap: nowrap;
+  align-items: baseline;
 }
 
 .pet-image {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
-  margin-bottom: 1rem;
-  box-shadow: inset;
-  border-radius: 20px;
+  border-radius: 1rem;
   margin-bottom: 10px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .pet-details-container {
   display: flex;
-  flex-direction: column; 
+  flex-direction: row; 
   align-items: center; 
+  justify-content: space-between;
   width: 100%;
   font-family: "Fredoka One", cursive;
+  padding:10px;
 }
 
 .pet-name {
-  display: inline;
+  display: block;
   flex:1;
-  font-size: 2.2rem;
+  font-size: 3.4rem;
   font-family: "Londrina Shadow", cursive;
   margin-bottom: 5px;
 
@@ -129,16 +138,24 @@ nav a.active {
   font-size: .8rem;
   color: #777777;
   font-family: "Fredoka One", cursive;
-  margin-bottom: 20px; 
+  margin-bottom: -1rem;
+  margin-top: -1.2rem;
+  margin-left: -1rem;
 }
 
-.pet-food,
 .pet-owner {
   font-size: 1rem;
-  font-weight: normal;
-  margin-top: 0.5rem;
+  margin-top: -1rem;
+  color: #777777;
+  font-family: "Fredoka One", cursive;
+}
+
+.pet-food{
+  font-size: 1rem;
   color: #777777;
   margin-bottom: 5px; 
+  font-family: "Fredoka One", cursive;
+  flex:auto;
 }
 
 .heart_button {
@@ -155,7 +172,6 @@ nav a.active {
   font-weight: bold;
   font-size: 18px;
 }
-
 
 .heart_button {
   background-color: transparent;
@@ -177,15 +193,438 @@ nav a.active {
   transform: scale(0.8);
 }
 
-@media only screen and (max-width: 600px) {
-  nav {
-    height: 64px;
-    flex-direction: column;
-    justify-content: center;
+.about-owner{
+  font-family: "Fredoka One", cursive;
+  text-align: center;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top:100px;
+}
+
+.about-image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.about-image {
+  max-width: 300px;
+  height: 300px;
+}
+
+.about-name{
+  display: block;
+  flex:1;
+  font-size: 1.4rem;
+  font-family: "Londrina Shadow", cursive;
+  margin-bottom: 5px;
+  width: 300px
+}
+
+.about-species{
+  padding:20px;
+  font-size: .8rem;
+  color: #777777;
+  font-family: "Fredoka One", cursive;
+  margin-bottom: -1rem;
+  margin-top: -1.2rem;
+  margin-left: -1rem;
+}
+
+.about-details-container{
+  display: flex;
+  flex-direction: row; 
+  align-items: center; 
+  justify-content: space-between;
+  width: 100%;
+  font-family: "Fredoka One", cursive;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top:30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  width: 500px;
+}
+
+.form-group label {
+ font-family: "Fredoka One", cursive;
+ color: #777777;
+}
+
+.form-group input[type="text"],
+input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #777777;
+}
+
+#profile_btn {
+  background-color: #4CAF50;
+  color: white;
+  width: 500px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#heart_button{
+  font-family: "Fredoka One", cursive;
+}
+
+#profile_btn:hover {
+  background-color: #3e8e41;
+}
+
+.your-pets{
+  font-family: "Fredoka One", cursive;
+  text-align: center;
+}
+
+.pet-profiles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 20px;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding: 30px;
+  gap:20px;
   }
 
-  nav h4,
-  nav a {
-    margin: 10px 0;
+.no-pets-yet{
+  text-align: center;
+  font-family: "Fredoka One", cursive;
+  color: #777777;
   }
+
+.profile-images {
+    width: 30%;
+    height: auto;
+  }
+
+.profile-details-container{
+  display:flex;
+  align-items: center;
+  flex-direction: column;
+  gap:5px;
+  }
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-left: -5rem;
+  gap: 5px;
+}
+
+.profile-names{
+  flex: none;
+  font-size: 2.4rem;
+  font-family: "Londrina Shadow", cursive;
+  margin-bottom: auto;
+}
+
+.profile-species{
+  padding:20px;
+  font-size: 1rem;
+  color: #777777;
+  font-family: "Fredoka One", cursive;
+  margin-bottom: -1rem;
+  margin-top: -1.2rem;
+  margin-left: -1rem;
+}
+
+.profile-food{
+  font-size: .8rem;
+  color: #777777;
+  font-family: "Fredoka One", cursive;
+  flex: none;
+  padding: 5px;
+  margin-left: -14em;
+  margin-bottom: 9rem;  
+}
+
+#delete {
+  padding:10px;
+  background-color: #ee0303;
+  color: white;
+  padding: 10px 20px; 
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  width:200px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#delete:hover {
+  background-color:  #b32100;
+}
+
+#edit-frame{
+  padding:10px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  width:200px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#edit-frame:hover {
+  background-color: #3e8e41;
+}
+
+.sure{
+  padding:10px;
+  text-align: center;
+  color: #ed4956;
+}
+
+.delete-image{
+  width: 30%;
+  height: auto;
+}
+
+.delete-button{
+  display: flex;
+  justify-content: center;
+  gap:5px;
+}
+
+#yes-delete{
+  padding:10px;
+  background-color: #ee0303;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  width:100px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#yes-delete:hover {
+  background-color: #b32100;
+}
+
+#no-dont-delete{
+  padding:10px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  width:200px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+#no-dont-delete:hover{
+  background-color: #3e8e41;
+}
+
+.edit-frame-class{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  gap:10px;
+}
+
+.edit-frame{
+  padding:10px;
+  font-size: 30px;
+  text-align: center;
+  color: #0ca603;
+  max-width: 1000px;
+}
+
+.edit-frame-image{
+  width: 30%;
+  height: auto;
+}
+
+.add-frame{
+  padding:10px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  width:-webkit-fill-available;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-frame:hover{
+  background-color: #3e8e41;
+}
+
+.edit-password{
+  font-family: "Fredoka One", cursive;
+  text-align: center;
+}
+
+.edit-group{
+  margin-bottom: 20px;
+  width: 500px;
+}
+
+.edit-group label {
+  font-family: "Fredoka One", cursive;
+  color: #777777;
+ }
+ 
+ .edit-group input[type="password"]{
+   width: 100%;
+   padding: 10px;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+   font-size: 16px;
+   color: #777777;
+ }
+ 
+#update-password{
+  background-color: #4CAF50;
+  color: white;
+  width: 500px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+ }
+
+ #update-password:hover {
+  background-color: #3e8e41;
+}
+
+.edit-profile-pic{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  gap:10px;
+}
+
+
+#edit-picture{
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  margin:5px;
+  transition: background-color 0.3s ease;
+}
+
+#edit-picture:hover {
+  background-color: #3e8e41;
+}
+
+.edit-profile-pic input[type="file"]{
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #777777;
+}
+
+.login-page{
+  font-family: "Fredoka One", cursive;
+  text-align: center;
+}
+
+.login-group{
+  margin-bottom: 20px;
+  width: 500px;
+}
+
+.login-group input[type="text"]{
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #777777;
+}
+
+.login-group label {
+  font-family: "Fredoka One", cursive;
+  color: #777777;
+ }
+
+ #login{
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  width:500px;
+  margin:5px;
+  transition: background-color 0.3s ease;
+}
+
+#login:hover {
+  background-color: #3e8e41;
+}
+
+.sign-up-page{
+  font-family: "Fredoka One", cursive;
+  text-align: center;
+}
+
+#signup-btn{
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  width:500px;
+  margin:5px;
+  transition: background-color 0.3s ease;
+}
+
+#signup-btn:hover {
+  background-color: #3e8e41;
 }
