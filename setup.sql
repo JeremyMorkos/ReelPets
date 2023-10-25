@@ -58,7 +58,7 @@ INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Slim
 INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Fred', 'Ring-Necked snake', 'https://a-z-animals.com/media/2022/02/shutterstock_687723445.jpg', 'Beans', 1);
 INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Sally', 'Anaconda', 'https://a-z-animals.com/media/2022/02/shutterstock_1965532993.jpg', 'Plums', 1);
 INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Snape', 'Australian copperhead snake', 'https://a-z-animals.com/media/2021/11/What-Does-a-Copperhead-Snake-Look-Like-header.jpg', 'Pumpkin Pie', 1);
-INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Voldybaldy', 'Hognose snake', 'https://a-z-animals.com/media/2022/04/Hognose-Snake-header.jpg', 'Ice Cream', 1);
+INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Voldy', 'Hognose snake', 'https://a-z-animals.com/media/2022/04/Hognose-Snake-header.jpg', 'Ice Cream', 1);
 
 INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Leafy', 'Tree frog', 'https://a-z-animals.com/media/2019/11/Tree-frog-Red-eyed-1024x535.jpg' , 'Crickets', 2);
 INSERT INTO pets (name, type, image_url, favourite_food,  user_id) VALUES ('Bully', 'American bullfrog', 'https://a-z-animals.com/media/2019/11/Bullfrog-on-leaf-1024x535.jpg' , 'Mealworms', 2);

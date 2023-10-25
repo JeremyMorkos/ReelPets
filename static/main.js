@@ -46,11 +46,10 @@ for (let i = 0 ; i < buttons.length; i++) {
         const button = event.target;
 
 
-        // fetch - performs http request ( get/post) - then fill the request. - returns a Promise
         fetch(`/hearts?pet_id=${button.dataset.petId}`, {
             method: 'POST'
         })
-        // .then waits for the promise to resolve, and then executes a function
+        
         .then(async (response) => {
             console.log(response);
             const json = await response.json();

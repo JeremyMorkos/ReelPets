@@ -20,11 +20,11 @@ Delete page
             <p class="pet-species"> the {{ pet.type }}</p>
             </span> 
         </div>  
-            <div class = "pet-image-container ">
+            <div class = "profile-details-container">
                 <div class = "pet-image">
                 <input type="hidden" name="id" value="{{ pet.id }}">
                 <a href = "/about/{{ pet.user_name }}">
-                <img class="pet-image" src="{{ pet.image_url }}" alt="{{ pet.name }}">
+                <img class="profile-images" src="{{ pet.image_url }}" alt="{{ pet.name }}">
                 </a>
                 </div>
             </div>

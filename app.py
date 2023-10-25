@@ -41,7 +41,12 @@ def signup_get():
 def signup_post():
     user_name = request.form.get('user_name')
     password = request.form.get('password')
-    image = request.files.get('image')    
+    image = request.files.get('image')   
+
+    if not image:
+        flash('No image file provided', 'error')
+        return redirect('/signup')
+
     upload_image = cloudinary.uploader.upload(image)
     image_url = upload_image['url']
     
@@ -146,21 +151,6 @@ def edit_profile_picture_post():
     update_pofile_picture(user_id,image_url)
     return redirect('/profile')
  
-# @app.get('/edit_username')
-# def edit_username_get():
-#     user_name = session['name']
-#     user = load_user(user_name)
-#     image_url = user['image_url']
-#     return render_template('edit_username.html',image_url=image_url)
-
-# @app.post('/edit_username')
-# def edit_username_post():
-#     user_id = session['id']
-#     user_name = request.form.get('user_name')
-#     update_username(user_id, user_name)
-#     session['name'] = user_name
-#     return redirect('/profile')
-
 @app.get('/edit_pet_picture/<pet_id>')
 def edit_pet_picture_get(pet_id):
     pet = select_one_pet(pet_id)
@@ -177,7 +167,7 @@ def add_frame():
     link = link.rsplit('/', 1)[-1]
     image_url = CloudinaryImage(link).build_url( width=450, radius=0, border="5px_solid_rgb:000000")
     update_image(pet_id,image_url)
-    return redirect(f"edit_pet_picture/{pet_id}")
+    return redirect("/profile")
 
 @app.get('/about/<user_id>')
 def view_user_profile(user_id):
